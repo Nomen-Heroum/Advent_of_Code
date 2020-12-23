@@ -6,19 +6,23 @@ PLAYERS = src.read(22, '\n\n')
 
 def play_combat(players, recursive=False):
     win = 0
-    cache = [deepcopy(players)]
-    while all(players):
-        cards = [p.pop(0) for p in players]
-        if recursive and all(len(players[i]) >= cards[i] for i in range(2)):
-            _, win = play_combat([players[i][:cards[i]] for i in range(2)], recursive=True)
-        else:
-            win = max(range(2), key=lambda x: cards[x])
-        players[win] += [cards[win], cards[(win + 1) % 2]]
-        if players in cache:
-            win = 0
-            break
-        else:
-            cache.append(deepcopy(players))
+    all_cards = *players[0], *players[1]
+    max_card = max(all_cards)
+    n = len(all_cards)
+    if max_card in players[1] or max_card < n-2:  # Props to /u/curious_sapi3n for this optimisation
+        cache = [deepcopy(players)]
+        while all(players):
+            cards = [p.pop(0) for p in players]
+            if recursive and all(len(players[i]) >= cards[i] for i in range(2)):
+                _, win = play_combat([players[i][:cards[i]] for i in range(2)], recursive=True)
+            else:
+                win = max(range(2), key=lambda x: cards[x])
+            players[win] += [cards[win], cards[(win + 1) % 2]]
+            if players in cache:
+                win = 0
+                break
+            else:
+                cache.append(deepcopy(players))
 
     return players, win
 
