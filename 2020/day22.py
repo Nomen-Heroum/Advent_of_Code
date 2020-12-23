@@ -6,10 +6,7 @@ PLAYERS = src.read(22, '\n\n')
 
 def play_combat(players, recursive=False):
     win = 0
-    all_cards = *players[0], *players[1]
-    max_card = max(all_cards)
-    n = len(all_cards)
-    if max_card in players[1] or max_card < n-2:  # Props to /u/curious_sapi3n for this optimisation
+    if max(players[1]) > max(players[0]):  # Props to /u/curious_sapi3n for this optimisation
         cache = [deepcopy(players)]
         while all(players):
             cards = [p.pop(0) for p in players]
