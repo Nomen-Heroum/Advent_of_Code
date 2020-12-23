@@ -27,7 +27,7 @@ def tile_dict(blocks: list):
 def orientations(tile: np.ndarray):
     """Yields all different orientations of a tile"""
     for d in (1, -1):  # Tile is not flipped/flipped
-        for rot in range(4):  # CCQ quarter turns
+        for rot in range(4):  # CCW quarter turns
             yield np.rot90(tile, k=rot)[:, ::d]
 
 
