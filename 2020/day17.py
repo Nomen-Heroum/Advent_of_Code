@@ -28,7 +28,7 @@ def neighbours(grid, coord):
 def iterate(strings, steps=1, dimensions=3):
     """Makes a starting grid from a list of strings and iterates over it n times."""
     grid = make_grid(strings, dimensions)
-    for i in range(steps):
+    for _ in range(steps):
         new_grid = defaultdict(int)
         ones = copy(grid)
         for key in ones:
