@@ -18,10 +18,7 @@ def find_encryption_key(public_key_1: int, public_key_2: int, modulus: int):
         if (i+1) % 10_000 == 0:
             print(f"{i+1} out of {modulus} combinations tried.\r", end='')
 
-    print("Calculating encryption key...")
-    loop_prod = loop_sizes[0] * loop_sizes[1]
-    loop_mod, remainder = divmod(loop_prod, modulus)
-    return 7**sum(divmod(loop_mod + remainder, modulus)) % modulus
+    return pow(7, loop_sizes[0] * loop_sizes[1], modulus)
 
 
 def main(public_key_1=PUBLIC_KEY_1, public_key_2=PUBLIC_KEY_2, modulus=MODULUS):
