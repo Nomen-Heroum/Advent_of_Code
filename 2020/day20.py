@@ -3,6 +3,7 @@ import numpy as np
 import re
 from collections import defaultdict
 import inspect
+import matplotlib.pyplot as plt
 
 BLOCKS = src.read(20, split='\n\n')  # List with one separate string for each block of text
 SNEK_STRING = inspect.cleandoc("""
@@ -105,8 +106,6 @@ def roughness(picture: np.ndarray, snek=SNEK):
     pic_x, pic_y = picture.shape
     snek_x, snek_y = snek.shape
 
-    snek_img = np.zeros_like(picture, dtype=bool)  # Pretty picture for debugging
-
     for pic in orientations(picture):
         options = np.argwhere(pic[1:pic_x - snek_x + 2, :pic_y - snek_y + 1] == 1)  # Indices in pic where a monster
         for place in options:                                                       # might be (have a 1 below them)
@@ -117,11 +116,12 @@ def roughness(picture: np.ndarray, snek=SNEK):
                     break
             if snek_here:
                 for piece in np.argwhere(snek):
-                    snek_img[tuple(place + piece)] = True  # Add snek to the pretty picture
+                    pic[tuple(place + piece)] = 2  # Make the snek stand out in the picture
                 snek_count += 1
         if snek_count:
-            print(f"{snek_count} sneks were counted.")  # Breakpoint here for pretty picture
-            return picture.sum() - snek_count * snek.sum()
+            print(f"{snek_count} sneks were counted.")
+            plt.imshow(pic)
+            return pic.sum() - 2 * snek_count * snek.sum()  # Sneks have a value of 2
     assert snek_count, "No orientation found with sneks."
 
 
