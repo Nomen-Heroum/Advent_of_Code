@@ -43,7 +43,7 @@ def main(rooms=ROOMS):
 
     src.two()
     decrypt_rooms(real_rooms)
-    print("Room names written out to day4output.txt")
+    print("Room names written out to day4output.txt.")
 
 
 if __name__ == '__main__':
