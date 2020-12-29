@@ -121,7 +121,7 @@ def roughness(picture: np.ndarray, snek=SNEK):
         if snek_count:
             print(f"{snek_count} sneks were counted.")
             plt.imshow(pic)
-            return pic.sum() - 2 * snek_count * snek.sum()  # Sneks have a value of 2
+            return (pic == 1).sum()  # Sneks have a value of 2
     assert snek_count, "No orientation found with sneks."
 
 
