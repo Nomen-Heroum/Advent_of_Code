@@ -36,7 +36,7 @@ def heuristic(node, _target):
     return h
 
 
-def a_star(start, target, h, neighbours_costs):
+def a_star(start, target, h, neighbours_costs, admissible=True):
     """Generic A* pathfinding algorithm. Does not return a path, only the discovered path length.
 
     A binary heap (heapq) is used for the priority queue. f(n) = g(n) + h(n) is prioritised as always.
@@ -51,6 +51,8 @@ def a_star(start, target, h, neighbours_costs):
         h: A function that returns the heuristic h(n) of a given node. Takes two arguments: (node, target)
         neighbours_costs: A single-argument function that takes the current node, and yields tuples containing
             each neighbouring node and its distance from the current node: (neighbour, cost)
+        admissible (optional): True if the heuristic is admissible (default), False otherwise. Must be set to
+            False for non-admissible heuristics to prevent breakage.
 
     Returns:
         The length of the discovered path.
@@ -61,22 +63,30 @@ def a_star(start, target, h, neighbours_costs):
     # Priority queue: f(n) is prioritised, with ties broken first by h(n), then by last inserted.
     queue = [(guess, guess, entry_id, start, 0)]  # (f(n), h(n), entry, node, g(n))
 
-    to_visit = {start}  # Set containing the same nodes as the queue; prevents duplicates
-    visited = set()
+    visited = {start} if admissible else set()  # All nodes for which g(n) is known for certain
 
-    while to_visit:
+    while queue:
         _f, _h, _id, node, g = heapq.heappop(queue)
-        to_visit.remove(node)
-        visited.add(node)
-        for neigh, cost in neighbours_costs(node):
-            if neigh == target:  # Bingo!
-                return g + cost
-            if neigh not in visited | to_visit:
-                entry_id -= 1  # Negative to ensure LIFO
-                g += cost  # Update path length
-                h_n = h(neigh, target)
-                heapq.heappush(queue, (g + h_n, h_n, entry_id, neigh, g))
-                to_visit.add(neigh)
+        if node == target:
+            return g  # This only happens without an admissible heuristic
+
+        if admissible or node not in visited:
+            for neigh, cost in neighbours_costs(node):
+                if neigh == target and admissible:  # Saves checking the other neighbours
+                    return g + cost
+                if neigh not in visited:
+                    entry_id -= 1  # Negative to ensure LIFO
+                    g += cost  # Update path length
+                    h_n = h(neigh, target)
+                    heapq.heappush(queue, (g + h_n, h_n, entry_id, neigh, g))
+
+                    # With an admissible heuristic we can mark the neighbours as visited
+                    if admissible:
+                        visited.add(neigh)
+
+            # Without an admissible heuristic we have to mark the current node as visited
+            if not admissible:
+                visited.add(node)
 
     # If every possible node has been visited
     raise EOFError("No path to the target could be found.")
