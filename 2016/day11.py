@@ -16,7 +16,7 @@ TARGET = ((frozenset(), frozenset()),
 
 
 def neighbours(node):
-    pass
+    pass  # TODO
 
 
 def heuristic(node, _target):
@@ -36,7 +36,7 @@ def heuristic(node, _target):
     return h
 
 
-def a_star(parent, target, h, neighbours_costs, is_valid=lambda _: True):
+def a_star(start, target, h, neighbours_costs):
     """Generic A* pathfinding algorithm. Does not return a path, only the discovered path length.
 
     A binary heap (heapq) is used for the priority queue. f(n) = g(n) + h(n) is prioritised as always.
@@ -46,24 +46,22 @@ def a_star(parent, target, h, neighbours_costs, is_valid=lambda _: True):
     Nodes are stored in sets, so they must be hashable.
 
     Args:
-        parent: The starting node.
+        start: The starting node.
         target: The target node.
         h: A function that returns the heuristic h(n) of a given node. Takes two arguments: (node, target)
         neighbours_costs: A single-argument function that takes the current node, and yields tuples containing
             each neighbouring node and its distance from the current node: (neighbour, cost)
-        is_valid (optional): A single-argument function that takes a node and checks that it is valid.
-            By default, this always returns True, to allow for checking validity within neighbours_costs.
 
     Returns:
         The length of the discovered path.
     """
-    guess = h(parent, target)  # Best guess for the shortest path length
+    guess = h(start, target)  # Best guess for the shortest path length
     entry_id = 0
 
     # Priority queue: f(n) is prioritised, with ties broken first by h(n), then by last inserted.
-    queue = [(guess, guess, entry_id, parent, 0)]  # (f(n), h(n), entry, node, g(n))
+    queue = [(guess, guess, entry_id, start, 0)]  # (f(n), h(n), entry, node, g(n))
 
-    to_visit = {parent}  # Set containing the same nodes as the queue; prevents duplicates
+    to_visit = {start}  # Set containing the same nodes as the queue; prevents duplicates
     visited = set()
 
     while to_visit:
@@ -73,7 +71,7 @@ def a_star(parent, target, h, neighbours_costs, is_valid=lambda _: True):
         for neigh, cost in neighbours_costs(node):
             if neigh == target:  # Bingo!
                 return g + cost
-            if is_valid(neigh) and neigh not in visited | to_visit:
+            if neigh not in visited | to_visit:
                 entry_id -= 1  # Negative to ensure LIFO
                 g += cost  # Update path length
                 h_n = h(neigh, target)
