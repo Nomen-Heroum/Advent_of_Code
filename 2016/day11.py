@@ -43,6 +43,9 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
     In case of a tie, the node with the lowest heuristic h(n) is prioritised. Further ties are handled
     in reverse insertion order (Last In, First Out).
 
+    Different algorithms are used for admissible and non-admissible heuristics; the admissible case is
+    faster, but it breaks for improper heuristics.
+
     Nodes are stored in sets, so they must be hashable.
 
     Args:
@@ -63,30 +66,36 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
     # Priority queue: f(n) is prioritised, with ties broken first by h(n), then by last inserted.
     queue = [(guess, guess, entry_id, start, 0)]  # (f(n), h(n), entry, node, g(n))
 
-    visited = {start} if admissible else set()  # All nodes for which g(n) is known for certain
+    if admissible:  # Faster, more breakable algorithm
+        visited = {start}
 
-    while queue:
-        _f, _h, _id, node, g = heapq.heappop(queue)
-        if node == target:
-            return g  # This only happens without an admissible heuristic
-
-        if admissible or node not in visited:
+        while queue:
+            _f, _h, _id, node, g = heapq.heappop(queue)
             for neigh, cost in neighbours_costs(node):
-                if neigh == target and admissible:  # Saves checking the other neighbours
+                if neigh == target:  # Return straight away when we touch the target node
                     return g + cost
                 if neigh not in visited:
                     entry_id -= 1  # Negative to ensure LIFO
                     g += cost  # Update path length
                     h_n = h(neigh, target)
                     heapq.heappush(queue, (g + h_n, h_n, entry_id, neigh, g))
+                    visited.add(neigh)  # We mark the neighbours as visited to prevent duplicates
 
-                    # With an admissible heuristic we can mark the neighbours as visited
-                    if admissible:
-                        visited.add(neigh)
+    else:  # Slower, more resilient algorithm
+        visited = set()
 
-            # Without an admissible heuristic we have to mark the current node as visited
-            if not admissible:
-                visited.add(node)
+        while queue:
+            _f, _h, _id, node, g = heapq.heappop(queue)
+            if node == target:  # Only return once the target node is current
+                return g
+            if node not in visited:
+                visited.add(node)  # Without an admissible h(n) we have to mark the current node as visited
+                for neigh, cost in neighbours_costs(node):
+                    if neigh not in visited:
+                        entry_id -= 1  # Negative to ensure LIFO
+                        g += cost  # Update path length
+                        h_n = h(neigh, target)
+                        heapq.heappush(queue, (g + h_n, h_n, entry_id, neigh, g))
 
     # If every possible node has been visited
     raise EOFError("No path to the target could be found.")
@@ -95,7 +104,7 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
 def main(parent=START, target=TARGET):
     src.one()
     ans1 = a_star(parent, target, heuristic, neighbours)
-    print(f"You need at least {ans1}.")
+    print(f"You need at least {ans1} steps.")
 
     src.copy(ans1)
 
