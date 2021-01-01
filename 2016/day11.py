@@ -1,39 +1,49 @@
 import src
 import heapq
 
-# 5-tuple containing all four floors in order, then the current floor number
-START = ((frozenset({'Po', 'Tm', 'Pm', 'Ru', 'Co'}), frozenset({'Tm', 'Ru', 'Co'})),  # frozensets are hashable
-         (frozenset(), frozenset({'Po', 'Pm'})),
-         (frozenset(), frozenset()),
-         (frozenset(), frozenset()),
-         1)  # Current floor
-
-TARGET = ((frozenset(), frozenset()),
-          (frozenset(), frozenset()),
-          (frozenset(), frozenset()),
-          (frozenset({'Po', 'Tm', 'Pm', 'Ru', 'Co'}), frozenset({'Po', 'Tm', 'Pm', 'Ru', 'Co'})),
-          4)  # End on the 4th floor
+# Nodes contain all generator floors, then all respective microchip floors, then the current floor.
+# Floors are numbered as their distance from the 4th floor, for nicer heuristic calculation.
+START = ((3, 3, 3, 3, 3, 2, 3, 2, 3, 3), 3)
+TARGET = ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 0)
 
 
 def neighbours(node):
-    pass  # TODO
+    """Yields all neighbouring nodes and their cost (1)."""
+    objects, current = node
+    new_floors = []
+    if current < 3:  # Can go downstairs
+        new_floors.append(current + 1)
+    if current > 0:  # Can go upstairs
+        new_floors.append(current - 1)
+
+    def move(obj):
+        for i, flo in enumerate(obj):
+            if flo == current:
+                yield i, obj[:i] + (new,) + obj[i + 1:]
+
+    def is_valid(obj):
+        generators = obj[:5]
+        microchips = obj[-5:]
+        for m, mic in enumerate(microchips):
+            if generators[m] != mic and mic in generators:  # Microchip is with a generator but not with its own
+                return False
+        return True
+
+    for new in new_floors:  # For all possible directions
+        for num, single_move in move(objects):
+            if is_valid(single_move):
+                yield (single_move, new), 1  # Move one object
+
+            for _, second_move in move(objects[num + 1:]):
+                two_moves = single_move[:num + 1] + second_move
+                if is_valid(two_moves):
+                    yield (two_moves, new), 1  # Move two objects
 
 
 def heuristic(node, _target):
-    """Returns the minimum move count assuming no restrictions"""
-    current_floor_dist = 4 - node[-1]  # Current distance to 4th floor
-    h = 0
-    for floor, (generators, microchips) in enumerate(node[:-2]):
-        floor_dist = 3 - floor  # Distance to 4th floor
-        object_count = len(generators) + len(microchips)
-
-        # If there is only one object on this floor and none below it
-        if floor_dist == current_floor_dist and not h and object_count < 2:
-            h += current_floor_dist
-
-        h += 2 * floor_dist * object_count
-    h -= 3 * current_floor_dist
-    return h
+    """Returns the minimum move count assuming no restrictions. Admissible. Underestimates the move count
+    when there is one object on the current floor and none below it."""
+    return 2 * sum(node[0]) - 3 * node[1]
 
 
 def a_star(start, target, h, neighbours_costs, admissible=True):
@@ -76,9 +86,10 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
                     return g + cost
                 if neigh not in visited:
                     entry_id -= 1  # Negative to ensure LIFO
-                    g += cost  # Update path length
+                    g_n = g + cost
                     h_n = h(neigh, target)
-                    heapq.heappush(queue, (g + h_n, h_n, entry_id, neigh, g))
+                    f_n = g_n + h_n  # Total path cost
+                    heapq.heappush(queue, (f_n, h_n, entry_id, neigh, g_n))
                     visited.add(neigh)  # We mark the neighbours as visited to prevent duplicates
 
     else:  # Slower, more resilient algorithm
@@ -93,9 +104,10 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
                 for neigh, cost in neighbours_costs(node):
                     if neigh not in visited:
                         entry_id -= 1  # Negative to ensure LIFO
-                        g += cost  # Update path length
+                        g_n = g + cost
                         h_n = h(neigh, target)
-                        heapq.heappush(queue, (g + h_n, h_n, entry_id, neigh, g))
+                        f_n = g_n + h_n  # Total path cost
+                        heapq.heappush(queue, (f_n, h_n, entry_id, neigh, g_n))
 
     # If every possible node has been visited
     raise EOFError("No path to the target could be found.")
