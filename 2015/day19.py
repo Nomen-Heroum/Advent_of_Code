@@ -48,35 +48,3 @@ def main(dct=None, order=None, molecule=MOLECULE):
 
 if __name__ == '__main__':
     main()
-
-
-# def make_medicine(dct, target_molecule):
-#     current = {'e'}
-#     for i in itertools.count(1):
-#         newset = set()
-#         for molecule in current:
-#             for key in dct:
-#                 match = re.finditer(key, molecule)
-#                 for mo in match:
-#                     for repl in dct[key]:
-#                         new = molecule[:mo.start()] + repl + molecule[mo.end():]
-#                         if new == target_molecule:
-#                             return i
-#                         newset.add(new)
-#         current = newset
-
-
-# def make_medicine(dct, target_molecule):
-#     current = {target_molecule}
-#     for i in itertools.count(1):
-#         newset = set()
-#         for molecule in current:
-#             for key, vals in dct.items():
-#                 for val in vals:
-#                     match = re.finditer(val, molecule)
-#                     for mo in match:
-#                         new = molecule[:mo.start()] + key + molecule[mo.end():]
-#                         if new == 'e':
-#                             return i
-#                         newset.add(new)
-#         current = newset
