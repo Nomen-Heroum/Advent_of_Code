@@ -6,6 +6,9 @@ import heapq
 START = ((3, 3, 3, 3, 3, 2, 3, 2, 3, 3), 3)
 TARGET = ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 0)
 
+START_2 = ((3, 3, 3, 3, 3, 3, 3, 2, 3, 2, 3, 3, 3, 3), 3)
+TARGET_2 = ((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), 0)
+
 
 def neighbours(node):
     """Yields all neighbouring nodes and their cost (1)."""
@@ -21,9 +24,11 @@ def neighbours(node):
             if flo == current:
                 yield i, obj[:i] + (new,) + obj[i + 1:]
 
+    half = len(objects)//2
+
     def is_valid(obj):
-        generators = obj[:5]
-        microchips = obj[-5:]
+        generators = obj[:half]
+        microchips = obj[half:]
         for m, mic in enumerate(microchips):
             if generators[m] != mic and mic in generators:  # Microchip is with a generator but not with its own
                 return False
@@ -113,12 +118,15 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
     raise EOFError("No path to the target could be found.")
 
 
-def main(parent=START, target=TARGET):
+def main():
     src.one()
-    ans1 = a_star(parent, target, heuristic, neighbours)
+    ans1 = a_star(START, TARGET, heuristic, neighbours)
     print(f"You need at least {ans1} steps.")
 
-    src.copy(ans1)
+    src.two()
+    ans2 = a_star(START_2, TARGET_2, heuristic, neighbours)
+    print(f"With the extra objects, the minimum is {ans2} steps.")
+    src.copy(ans2)
 
 
 if __name__ == '__main__':
