@@ -6,15 +6,18 @@ DATA = '10010000000110000'
 
 def find_checksum(data, length):
     data += '0' + data[::-1].translate(str.maketrans('01', '10'))  # First step in string format
-    ln = len(data)
+
+    ln = len(data)  # Current length of binary representation
     data = int(data, 2)
-    needed = 1 << (length - 1)
+    needed = 1 << (length - 1)  # First number of the required length
     while data < needed:
         data = (data << (ln + 1)) + data + (1 << (ln//2))  # Next steps are faster in int format
-        ln = 2 * ln + 1
-    checksum = bin(data)[2:length+2]
+        ln = 2 * ln + 1  # Update length
+
+    checksum = bin(data)[2:length+2]  # Convert back to string
     while len(checksum) % 2 == 0:
         checksum = re.sub(r'(\d)(\d)', lambda mo: '1' if mo[1] == mo[2] else '0', checksum)
+
     return checksum
 
 
