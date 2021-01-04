@@ -46,7 +46,6 @@ unrotate = {0: 1, 1: 1, 2: 6, 3: 2, 4: 7, 5: 3, 6: 0, 7: 4}  # Reverse mapping f
 
 
 def unscramble(password: str, strings: list):
-    n = len(password)
     pw = list(password)
     strings.reverse()
     for s in strings:
