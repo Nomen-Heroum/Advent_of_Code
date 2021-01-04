@@ -3,7 +3,6 @@ This file contains general use functions for all exercises.
 """
 import heapq
 import os
-import re
 
 import numpy as np
 
