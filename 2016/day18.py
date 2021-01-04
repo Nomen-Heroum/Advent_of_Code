@@ -18,11 +18,11 @@ def count_safe(string: str, rows: int):
 
 
 def main(string=STRING):
-    src.one()
+    print("Part One:")
     ans1 = count_safe(string, 40)
     print(f"There are {ans1} safe tiles.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = count_safe(string, 400_000)
     print(f"There are {ans2} safe tiles.")
     src.copy(ans2)

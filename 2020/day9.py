@@ -28,11 +28,11 @@ def adds_to(value, numbers):
 def main(numbers=None, pre=PRE):
     numbers = numbers or NUMBERS
 
-    src.one()
+    print("Part One:")
     first = first_error(numbers, pre)
     print(f"The first faulty number is {first}.")
 
-    src.two()
+    print("\nPart Two:")
     key = adds_to(first, numbers)
     print(f"The encryption weakness is {key}.")
     src.copy(key)

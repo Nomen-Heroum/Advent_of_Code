@@ -19,11 +19,11 @@ def sieve(strings, version=1):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     ans1 = sieve(strings)
     print(f"The first time at which you can press the button is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = sieve(strings, version=2)
     print(f"With the extra disc, the first time is {ans2}.")
     src.copy(ans2)

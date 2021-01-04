@@ -28,11 +28,11 @@ def play2(numbers, end):
 def main(numbers=None):
     numbers = numbers or NUMBERS
 
-    src.one()
+    print("Part One:")
     ans1 = play(numbers, 2020)
     print(f"The 2020th number spoken is {ans1}.")
     
-    src.two()
+    print("\nPart Two:")
     ans2 = play2(numbers, 30000000)
     print(f"The 30000000th number spoken is {ans2}.")
     src.copy(ans2)

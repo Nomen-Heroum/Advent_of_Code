@@ -31,11 +31,11 @@ def run(strings: list, version=1):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     ans1 = run(strings)
     print(f"The final value of register b is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = run(strings, version=2)
     print(f"The final value of b is now {ans2}.")
     src.copy(ans2)

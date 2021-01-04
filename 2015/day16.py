@@ -45,11 +45,11 @@ def find_sue(mfcsam=None):
 
 
 def main():
-    src.one()
+    print("Part One:")
     sue = find_sue()
     print(f"The real Sue is Sue {sue}.")
 
-    src.two()
+    print("\nPart Two:")
     sue2 = find_sue(MFCSAM2)
     print(f"The REAL Sue is Sue {sue2}.")
     src.copy(sue2)

@@ -29,11 +29,11 @@ def find_code(strings, keys=None, instructions=None):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     ans1 = find_code(strings)
     print(f"The bathroom code is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = find_code(strings, keys=KEYS2)
     print(f"It's actually {ans2}.")
     src.copy(ans2)

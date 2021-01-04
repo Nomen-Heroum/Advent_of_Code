@@ -17,11 +17,11 @@ def error_correct(strings, version=1):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     ans1 = error_correct(strings)
     print(f"The error-corrected message is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = error_correct(strings, version=2)
     print(f"Just kidding, it's actually {ans2}")
     src.copy(ans2)

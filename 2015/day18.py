@@ -35,11 +35,11 @@ def iterate(steps=1, grid=ARRAY, version=1):
 
 
 def main():
-    src.one()
+    print("Part One:")
     final_on = iterate(100).sum()
     print(f"{final_on} lights are on in the final configuration.")
 
-    src.two()
+    print("\nPart Two:")
     final_on2 = iterate(100, version=2).sum()
     print(f"{final_on2} lights are on in this version.")
     src.copy(final_on2)

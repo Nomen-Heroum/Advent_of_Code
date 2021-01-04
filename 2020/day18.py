@@ -35,11 +35,11 @@ def total_sum(strings: list, ev=evaluate):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     ans1 = total_sum(strings)
     print(f"The sum of outcomes is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = total_sum(strings, evaluate_2)
     print(f"The sum of outcomes is now {ans2}.")
     src.copy(ans2)

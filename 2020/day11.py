@@ -70,11 +70,11 @@ def iterate(grid: np.ndarray, seats: np.ndarray, version=1):
 
 
 def main(grid=ARRAY, seats=SEATS):
-    src.one()
+    print("Part One:")
     final_seats = iterate(grid, seats).sum()
     print(f"{final_seats} seats are occupied in the final configuration.")
 
-    src.two()
+    print("\nPart Two:")
     final_2 = iterate(grid, seats, version=2).sum()
     print(f"{final_2} seats are occupied in this version.")
     src.copy(final_2)

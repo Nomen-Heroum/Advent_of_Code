@@ -21,12 +21,12 @@ def follow(instructions, screen):
 
 
 def main(instructions=INSTRUCTIONS, screen=SCREEN):
-    src.one()
+    print("Part One:")
     ans1 = follow(instructions, screen)
     print(f"{ans1} lights are on after following the instructions.")
     src.copy(ans1)
 
-    src.two()
+    print("\nPart Two:")
     print(f"Plotted the code on the display.")
 
 

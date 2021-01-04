@@ -53,11 +53,11 @@ def dangerous_ingredients(strings):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     ans1 = count_impossible(strings)
     print(f"Ingredients that can't contain allergens appear {ans1} times.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = dangerous_ingredients(strings)
     print(f"The canonical dangerous ingredient list is {ans2}.")
     src.copy(ans2)

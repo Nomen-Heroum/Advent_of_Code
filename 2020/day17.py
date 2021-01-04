@@ -43,11 +43,11 @@ def iterate(strings, steps=1, dimensions=3):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     ans1 = iterate(strings, 6)
     print(f"The number of active cubes after six cycles is {ans1}.")
     
-    src.two()
+    print("\nPart Two:")
     ans2 = iterate(strings, 6, 4)
     print(f"In the four dimensional case the end number is {ans2}.")
     src.copy(ans2)

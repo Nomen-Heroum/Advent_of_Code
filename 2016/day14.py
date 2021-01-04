@@ -37,11 +37,11 @@ def find_otp(salt, version=1):
 
 
 def main(salt=SALT):
-    src.one()
+    print("Part One:")
     ans1 = find_otp(salt)
     print(f"Index {ans1} gives the 64th key.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = find_otp(salt, version=2)
     print(f"With key stretching, this index is {ans2}.")
     src.copy(ans2)

@@ -26,11 +26,11 @@ def lucky_elf(elves, version=1):
 
 
 def main(elves=ELVES):
-    src.one()
+    print("Part One:")
     ans1 = lucky_elf(elves)
     print(f"The lucky elf is Elf {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = lucky_elf(elves, 2)
     print(f"The lucky elf is now Elf {ans2}.")
     src.copy(ans2)

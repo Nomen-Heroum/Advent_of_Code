@@ -23,11 +23,11 @@ def distance(string, end_time=END_TIME):
 
 
 def main(strings=STRINGS, end_time=END_TIME):
-    src.one()
+    print("Part One:")
     furthest = max(distance(s, end_time) for s in strings)
     print(f"The winning reindeer got to {furthest} km.")
 
-    src.two()
+    print("\nPart Two:")
     scores = np.zeros(len(strings))
     for t in range(1, end_time + 1):
         distances = np.array([distance(s, t) for s in strings])

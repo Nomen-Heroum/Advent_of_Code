@@ -59,9 +59,9 @@ def minwin_maxloss(hp=100, boss=None, shop=None):
 def main():
     cheapest, expensive = minwin_maxloss()
 
-    src.one()
+    print("Part One:")
     print(f"The least gold you can spend to win is {cheapest}.")
-    src.two()
+    print("\nPart Two:")
     print(f"The most gold you can spend on losing is {expensive}.")
 
     src.copy(expensive)

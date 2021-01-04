@@ -32,11 +32,11 @@ def count_matches(rules, messages, version=1):
 
 
 def main(rules=RULES, messages=MESSAGES):
-    src.one()
+    print("Part One:")
     ans1 = count_matches(rules, messages)
     print(f"The number of valid messages is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = count_matches(rules, messages, version=2)
     print(f"There are now {ans2} valid messages.")
     src.copy(ans2)

@@ -68,11 +68,11 @@ def find_longest(start, target, neighs, password=PASSWORD):
 
 
 def main():
-    src.one()
+    print("Part One:")
     ans1 = a_star(START, TARGET, heuristic, neighbours)
     print(f"The shortest path to the vault is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = find_longest(START, TARGET, neighbours)
     print(f"The longest path has length {ans2}.")
     src.copy(ans2)

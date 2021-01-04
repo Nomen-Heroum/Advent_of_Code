@@ -17,11 +17,11 @@ def configure(weights: list, groups=3):
 def main(weights=None):
     weights = weights or WEIGHTS
 
-    src.one()
+    print("Part One:")
     ans1 = configure(weights)
     print(f"The best configuration has a QE of {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = configure(weights, groups=4)
     print(f"The best QE is now {ans2}.")
     src.copy(ans2)

@@ -51,11 +51,11 @@ def heuristic(node, _target):
 
 
 def main():
-    src.one()
+    print("Part One:")
     ans1 = src.a_star(START, TARGET, heuristic, neighbours)
     print(f"You need at least {ans1} steps.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = src.a_star(START_2, TARGET_2, heuristic, neighbours)
     print(f"With the extra objects, the minimum is {ans2} steps.")
     src.copy(ans2)

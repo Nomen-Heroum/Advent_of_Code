@@ -34,11 +34,11 @@ def initialize(strings, version=1):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     ans1 = initialize(strings)
     print(f"The sum of numbers stored in the memory is {ans1}.")
     
-    src.two()
+    print("\nPart Two:")
     ans2 = initialize(strings, 2)
     print(f"The sum is {ans2} for version 2.")
     src.copy(ans2)

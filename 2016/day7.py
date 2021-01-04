@@ -30,11 +30,11 @@ def count_ssl(ips: list):
 
 
 def main(ips=IPS):
-    src.one()
+    print("Part One:")
     ans1 = count_tls(ips)
     print(f"{ans1} IPs support TLS.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = count_ssl(ips)
     print(f"{ans2} IPs support SSL.")
     src.copy(ans2)

@@ -126,11 +126,11 @@ def roughness(picture: np.ndarray, snek=SNEK):
 
 
 def main():
-    src.one()
+    print("Part One:")
     ans1 = np.prod(find_corners(TILES, EDGES))
     print(f"The product of corner IDs is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     picture = build_image(TILES, EDGES)
     ans2 = roughness(picture)
     print(f"The roughness of water in this image is {ans2}.")

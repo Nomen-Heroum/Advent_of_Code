@@ -48,11 +48,11 @@ def iterate(flipped, instructions, steps=100):
 def main(strings=STRINGS, instructions=None):
     instructions = instructions or INSTRUCTIONS
 
-    src.one()
+    print("Part One:")
     ans1, flipped = decorate(strings, instructions)
     print(f"The number of black tiles is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = iterate(flipped, instructions)
     print(f"{ans2} tiles are black after 100 days.")
     src.copy(ans2)

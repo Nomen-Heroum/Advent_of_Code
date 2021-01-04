@@ -30,12 +30,12 @@ def calculate_score(players, win):
 
 
 def main(players=PLAYERS):
-    src.one()
+    print("Part One:")
     players = [[int(s) for s in players[i].splitlines()[1:]] for i in range(2)]
     ans1 = calculate_score(*play_combat(deepcopy(players)))
     print(f"The final score is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = calculate_score(*play_combat(deepcopy(players), recursive=True))
     print(f"The winner of Recursive Combat had {ans2} points.")
     src.copy(ans2)

@@ -34,11 +34,11 @@ def main(joltages=None):
     if joltages is None:
         joltages = jolt()
 
-    src.one()
+    print("Part One:")
     ans1 = part_one(joltages)
     print(f"The first answer is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = part_two(joltages)
     print(f"There are {ans2} possible arrangements of chargers.")
     src.copy(ans2)

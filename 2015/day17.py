@@ -14,11 +14,11 @@ def efficient_ways(volumes):
 
 
 def main():
-    src.one()
+    print("Part One:")
     ways = sum(sum(s) == 150 for s in POWER)
     print(f"There are {ways} ways to store 150 liters of eggnog in your fridge.")
 
-    src.two()
+    print("\nPart Two:")
     nice_ways, n = efficient_ways(VOLUMES)
     print(f"There are {nice_ways} ways to fit the eggnog in {n} bins.")
     src.copy(nice_ways)

@@ -72,7 +72,7 @@ def main(boss=None, player=None):
     boss = boss or BOSS
     player = player or PLAYER
 
-    src.one()
+    print("Part One:")
     ans1 = fight(boss, player)
     print(f"The least amount of mana you can spend and still win is {ans1}.")
 

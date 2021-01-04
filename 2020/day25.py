@@ -22,7 +22,7 @@ def find_encryption_key(public_key_1: int, public_key_2: int, modulus: int):
 
 
 def main(public_key_1=PUBLIC_KEY_1, public_key_2=PUBLIC_KEY_2, modulus=MODULUS):
-    src.one()
+    print("Part One:")
     ans1 = find_encryption_key(public_key_1, public_key_2, modulus)
     print(f"The encryption key is {ans1}.")
 

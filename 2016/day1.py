@@ -21,11 +21,11 @@ def find_distance(instructions,  version=1):
 
 
 def main(instructions=INSTRUCTIONS):
-    src.one()
+    print("Part One:")
     ans1 = find_distance(instructions)
     print(f"The Manhattan distance to my destiny is {ans1} blocks.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = find_distance(instructions, version=2)
     print(f"The first location visited twice is {ans2} blocks away.")
     src.copy(ans2)

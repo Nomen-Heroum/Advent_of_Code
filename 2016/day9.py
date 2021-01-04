@@ -20,11 +20,11 @@ def decompress(file: str, version=1):
 
 
 def main(file=FILE):
-    src.one()
+    print("Part One:")
     ans1 = decompress(file)
     print(f"The decompressed file length is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = decompress(file, version=2)
     print(f"The fully decompressed length is {ans2}.")
     src.copy(ans2)

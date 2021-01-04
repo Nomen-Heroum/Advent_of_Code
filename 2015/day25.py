@@ -10,7 +10,7 @@ def get_code(position):
 
 
 def main(position=POSITION):
-    src.one()
+    print("Part One:")
     ans1 = get_code(position)
     print(f"The code is {ans1}.")
 

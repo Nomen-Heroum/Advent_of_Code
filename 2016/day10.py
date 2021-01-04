@@ -40,11 +40,11 @@ def run(instructions):
 def main(instructions=None):
     instructions = instructions or INSTRUCTIONS
 
-    src.one()
+    print("Part One:")
     ans1, ans2 = run(instructions)
     print(f"The bot that compares 61 and 17 is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     print(f"The product of chip values in outputs 0-2 is {ans2}.")
     src.copy(ans2)
 

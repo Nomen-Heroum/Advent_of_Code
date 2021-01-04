@@ -40,11 +40,11 @@ def follow(instructions: list, dictionary: dict):
 def main(instructions=None):
     instructions = instructions or INSTRUCTIONS
 
-    src.one()
+    print("Part One:")
     endpos = follow(instructions, DICT)
     print(f"The final Manhattan distance from the star is {endpos}.")
 
-    src.two()
+    print("\nPart Two:")
     endpos2 = follow(instructions, DICT2)
     print(f"The final Manhattan distance is now {endpos2}.")
     src.copy(endpos2)

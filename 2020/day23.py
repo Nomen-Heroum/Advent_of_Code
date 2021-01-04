@@ -36,7 +36,7 @@ def alt_play(neighbours, start, moves=100):
 def main(cups=None):
     cups = cups or CUPS
 
-    src.one()
+    print("Part One:")
     neighbours1 = [0] + [cups[(cups.index(i+1) + 1) % len(cups)] for i in range(len(cups))]
     neighs1 = alt_play(neighbours1, cups[0])
     ans1 = ''
@@ -46,7 +46,7 @@ def main(cups=None):
         ans1 += str(current)
     print(f"The final configuration is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     neighbours2 = ([0] + [(cups + [10])[cups.index(i+1) + 1] for i in range(len(cups))]
                    + list(range(11, 1_000_001)) + [cups[0]])
     neighs2 = alt_play(neighbours2, cups[0], moves=10_000_000)

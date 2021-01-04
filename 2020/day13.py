@@ -34,11 +34,11 @@ def main(earliest=EARLIEST, ids=None, ids_indices=None):
     ids = ids or IDS
     ids_indices = ids_indices or IDS_INDICES
 
-    src.one()
+    print("Part One:")
     ans = ans1(earliest, ids)
     print(f"The first answer is {ans}.")
 
-    src.two()
+    print("\nPart Two:")
     ans_2 = ans2(ids_indices)
     print(f"The second answer is {ans_2}!")
     src.copy(ans_2)

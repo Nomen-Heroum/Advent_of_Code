@@ -20,11 +20,11 @@ def first_house2(presents):
 
 
 def main(presents=PRESENTS):
-    src.one()
+    print("Part One:")
     first = first_house(presents)
     print(f"The first house to get {presents} presents is {first}.")
 
-    src.two()
+    print("\nPart Two:")
     first2 = first_house2(presents)
     print(f"The first house to get {presents} presents is {first2}.")
     src.copy(first2)

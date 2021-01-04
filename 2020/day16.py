@@ -73,11 +73,11 @@ def departure_product(info, valid_tickets):
 
 
 def main(info=INFO):
-    src.one()
+    print("Part One:")
     ans1, valid_tickets = error_rate(info)
     print(f"My scanning error rate is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = departure_product(info, valid_tickets)
     print(f"The product of my departure numbers is {ans2}.")
     src.copy(ans2)

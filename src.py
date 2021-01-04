@@ -22,15 +22,8 @@ def copy(text):
         out.write(string)
 
 
-def one():
-    print("Part One:")
-
-
-def two():
-    print("\nPart Two:")
-
-
 def neighbours(x: int, y: int, grid: np.ndarray):
+    """Yields all neighbours of a point in a 2D NumPy array."""
     for dx in (-1, 0, 1):
         for dy in (-1, 0, 1):
             if (dx, dy) != (0, 0):
@@ -38,6 +31,7 @@ def neighbours(x: int, y: int, grid: np.ndarray):
 
 
 def repeat(f, x, n: int):
+    """Applies f to x successively n times."""
     for i in range(n):
         x = f(x)
     return x

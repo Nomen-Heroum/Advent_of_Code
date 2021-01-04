@@ -46,11 +46,11 @@ def count_reach(start, steps):
 
 
 def main():
-    src.one()
+    print("Part One:")
     ans1 = src.a_star(START, TARGET, heuristic, neighbours)
     print(f"The minumum number of steps required is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = count_reach(START, 50)
     print(f"I can reach {ans2} locations in 50 steps.")
     src.copy(ans2)

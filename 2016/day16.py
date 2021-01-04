@@ -22,11 +22,11 @@ def find_checksum(data, length):
 
 
 def main(data=DATA):
-    src.one()
+    print("Part One:")
     ans1 = find_checksum(data, 272)
     print(f"The checksum is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = find_checksum(data, 35651584)
     print(f"The second checksum is {ans2}.")
     src.copy(ans2)

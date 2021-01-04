@@ -33,11 +33,11 @@ def find_password(door_id, n=5, version=1):
 
 
 def main(door_id=DOOR_ID):
-    src.one()
+    print("Part One:")
     ans1 = find_password(door_id)
     print(f"The password is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     ans2 = find_password(door_id, version=2)
     print(f"The second password is {ans2}.")
     src.copy(ans2)

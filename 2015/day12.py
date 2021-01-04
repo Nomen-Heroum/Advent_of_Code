@@ -24,11 +24,11 @@ def sum_red(struct):
 
 
 def main(string=STRING):
-    src.one()
+    print("Part One:")
     total = sum_numbers(string)
     print(f"Total of numbers: {total}")
 
-    src.two()
+    print("\nPart Two:")
     structure = json.loads(string)
     no_red = sum_red(structure)
     print(f"Total of red-free numbers: {no_red}")

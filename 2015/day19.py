@@ -36,11 +36,11 @@ def main(dct=None, order=None, molecule=MOLECULE):
     dct = dct or DICT
     order = order or ORDER
 
-    src.one()
+    print("Part One:")
     distinct = count_mutations(dct, molecule)
     print(f"There are {distinct} distinct molecules to be made with one replacement.")
 
-    src.two()
+    print("\nPart Two:")
     medicine = depth_first_medicine(order, molecule)
     print(f"It takes at least {medicine} alterations to make the medicine.")
     src.copy(medicine)

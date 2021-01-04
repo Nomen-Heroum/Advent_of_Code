@@ -33,14 +33,14 @@ def total_score(permutation, scores, version=1):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     people, scores = parse(strings)
     perms = list(itertools.permutations(people))
     table = [total_score(p, scores) for p in perms]
     best = max(table)
     print(f"The best seating arrangement has a score of {best}.")
 
-    src.two()
+    print("\nPart Two:")
     table2 = [total_score(p, scores, version=2) for p in perms]
     best2 = max(table2)
     print(f"The best seating with me in it has a score of {best2}.")

@@ -32,11 +32,11 @@ def high_score(calories=None):
 
 
 def main(strings=STRINGS):
-    src.one()
+    print("Part One:")
     highest = high_score()
     print(f"The highest score is {highest}.")
 
-    src.two()
+    print("\nPart Two:")
     best = high_score(500)
     print(f"The highest score with 500 calories is {best}.")
     src.copy(best)

@@ -37,11 +37,11 @@ def decrypt_rooms(real_rooms: list):
 
 
 def main(rooms=ROOMS):
-    src.one()
+    print("Part One:")
     ans1, real_rooms = id_sum(rooms)
     print(f"The sum of real room IDs is {ans1}.")
 
-    src.two()
+    print("\nPart Two:")
     decrypt_rooms(real_rooms)
     print("Room names written out to day4output.txt.")
 
