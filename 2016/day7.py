@@ -1,7 +1,7 @@
 import src
 import regex as re
 
-IPS = src.read(7)
+IPS = src.read()
 
 
 def count_tls(ips: list):

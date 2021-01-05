@@ -1,6 +1,6 @@
 import src
 
-STRINGS = src.read(2)
+STRINGS = src.read()
 INSTRUCTIONS = {'U': 1j, 'D': -1j, 'L': -1, 'R': 1}
 KEYS = {-1+1j: '1', 1j: '2', 1+1j: '3',
         -1: '4', 0: '5', 1: '6',

@@ -1,6 +1,6 @@
 import src
 
-STRINGS = [s.split() for s in src.read(4)]
+STRINGS = [s.split() for s in src.read()]
 SORTED = [[tuple(sorted(s)) for s in p] for p in STRINGS]
 
 

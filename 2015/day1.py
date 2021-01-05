@@ -1,6 +1,6 @@
 import src
 
-STRING = src.read(1)[0]
+STRING = src.read()[0]
 
 
 def count_floors(string=STRING):

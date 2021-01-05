@@ -1,6 +1,6 @@
 import src
 
-strings = src.read(2)
+strings = src.read()
 
 
 def dimensions(string):

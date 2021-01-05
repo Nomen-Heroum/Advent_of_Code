@@ -2,7 +2,7 @@ import src
 from collections import defaultdict
 from parse import parse
 
-INSTRUCTIONS = sorted(src.read(10))
+INSTRUCTIONS = sorted(src.read())
 
 
 def run(instructions):

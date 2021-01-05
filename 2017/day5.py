@@ -1,7 +1,7 @@
 import src
 from copy import copy
 
-JUMPS = [int(n) for n in src.read(5)]
+JUMPS = [int(n) for n in src.read()]
 
 
 def count_steps(jumps, version=1):

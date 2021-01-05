@@ -2,7 +2,7 @@ import src
 import re
 from statistics import mode
 
-STRING = src.read(7, split='\n\n')[0]
+STRING = src.read(split='\n\n')[0]
 
 
 def bottom_program(string: str):

@@ -3,7 +3,7 @@ import re
 from parse import parse
 import math
 
-INFO = src.read(16, split='\n\n')
+INFO = src.read(split='\n\n')
 
 
 def parse_info(info=INFO):

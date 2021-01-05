@@ -1,6 +1,6 @@
 import src
 
-strings = src.read(1)
+strings = src.read()
 data = [int(s) for s in strings]
 
 if data.count(1010) > 1:

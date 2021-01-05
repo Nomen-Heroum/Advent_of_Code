@@ -2,7 +2,7 @@ import src
 import itertools
 import re
 
-STRINGS = src.read(9)
+STRINGS = src.read()
 
 
 def distances_cities(strings=STRINGS):

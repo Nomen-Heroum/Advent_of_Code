@@ -1,7 +1,7 @@
 import src
 import numpy as np
 
-STRINGS = src.read(18)
+STRINGS = src.read()
 ARRAY = np.pad(np.array(
     [np.fromstring(
         ','.join(s.translate(str.maketrans('.#', '01'))),

@@ -3,7 +3,7 @@ import re
 from collections import defaultdict
 from copy import copy
 
-STRINGS = src.read(24)
+STRINGS = src.read()
 INSTRUCTIONS = {
     'e': lambda x, y: (x+1, y),
     'w': lambda x, y: (x-1, y),

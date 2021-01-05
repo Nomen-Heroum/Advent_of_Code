@@ -3,7 +3,7 @@ import parse
 
 PASSWORD = 'abcdefgh'  # Seriously?
 PASSWORD_2 = 'fbgdceah'
-STRINGS = src.read(21)
+STRINGS = src.read()
 swap = parse.compile('swap {} {} with {} {}')
 step = parse.compile('rotate {} {:d} step')
 reverse = parse.compile('reverse positions {:d} through {:d}')

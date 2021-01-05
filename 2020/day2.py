@@ -1,7 +1,7 @@
 import src
 import re
 
-strings = src.read(2)
+strings = src.read()
 
 i = 0
 for s in strings:

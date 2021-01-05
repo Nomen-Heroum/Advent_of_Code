@@ -2,7 +2,7 @@ import src
 import re
 from collections import defaultdict
 
-ROOMS = src.read(4)
+ROOMS = src.read()
 
 
 def id_sum(rooms: list):

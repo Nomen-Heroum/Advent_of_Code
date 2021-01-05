@@ -1,7 +1,7 @@
 import src
 import re
 
-STRINGS = src.read(18)
+STRINGS = src.read()
 
 
 def evaluate(string: str):

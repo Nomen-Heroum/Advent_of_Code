@@ -2,7 +2,7 @@ import src
 import numpy as np
 import re
 
-STRINGS = src.read(6)
+STRINGS = src.read()
 
 
 def unpack(string):

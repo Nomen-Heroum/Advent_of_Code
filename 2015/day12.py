@@ -2,7 +2,7 @@ import src
 import re
 import json
 
-STRING = src.read(12)[0]
+STRING = src.read()[0]
 
 
 def sum_numbers(string):

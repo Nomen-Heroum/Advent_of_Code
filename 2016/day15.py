@@ -1,7 +1,7 @@
 import src
 from parse import parse
 
-STRINGS = src.read(15)
+STRINGS = src.read()
 
 
 def sieve(strings, version=1):

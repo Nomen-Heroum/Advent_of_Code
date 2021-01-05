@@ -1,7 +1,7 @@
 import src
 import re
 
-STRINGS = src.read(8)
+STRINGS = src.read()
 TOTAL_CHARS = sum(len(s) for s in STRINGS)
 
 

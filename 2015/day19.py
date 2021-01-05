@@ -2,7 +2,7 @@ import src
 import re
 from collections import defaultdict
 
-INSTR, MOLECULE = src.read(19, '\n\n')
+INSTR, MOLECULE = src.read('\n\n')
 MATCH = re.finditer(r'(\w+) => (\w+)', INSTR)
 DICT = defaultdict(list)
 TUPLIST = []

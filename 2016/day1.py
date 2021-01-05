@@ -1,6 +1,6 @@
 import src
 
-INSTRUCTIONS = src.read(1, split=', ')
+INSTRUCTIONS = src.read(split=', ')
 
 
 def find_distance(instructions,  version=1):

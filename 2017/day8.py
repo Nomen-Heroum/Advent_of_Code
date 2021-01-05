@@ -2,7 +2,7 @@ import src
 from collections import defaultdict
 from parse import parse
 
-STRINGS = src.read(8)
+STRINGS = src.read()
 
 
 def run(strings):

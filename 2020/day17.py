@@ -3,7 +3,7 @@ import itertools
 from collections import defaultdict
 from copy import copy
 
-STRINGS = src.read(17)
+STRINGS = src.read()
 
 
 def make_grid(strings, dimensions=3):

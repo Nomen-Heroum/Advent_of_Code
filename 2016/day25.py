@@ -1,7 +1,7 @@
 import src
 import itertools
 
-STRINGS = src.read(25)
+STRINGS = src.read()
 
 
 def run(strings: list, a_value: int):

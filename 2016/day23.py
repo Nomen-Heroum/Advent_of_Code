@@ -1,7 +1,7 @@
 import src
 from collections import defaultdict
 
-STRINGS = src.read(23)
+STRINGS = src.read()
 TOGGLE_DICT = {'inc': 'dec',
                'dec': 'inc',
                'tgl': 'inc',

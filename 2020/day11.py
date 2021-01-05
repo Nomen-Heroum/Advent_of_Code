@@ -1,7 +1,7 @@
 import src
 import numpy as np
 
-STRINGS = src.read(11)
+STRINGS = src.read()
 
 
 def grid_seats(strings=STRINGS):

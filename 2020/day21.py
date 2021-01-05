@@ -1,7 +1,7 @@
 import src
 from parse import parse
 
-STRINGS = src.read(21)
+STRINGS = src.read()
 
 
 def extract_sets(strings):

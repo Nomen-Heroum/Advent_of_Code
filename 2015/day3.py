@@ -1,7 +1,7 @@
 import src
 from collections import Counter
 
-STRING = src.read(3)[0]
+STRING = src.read()[0]
 
 
 def visit_amounts(string=STRING):

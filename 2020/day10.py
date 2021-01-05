@@ -2,7 +2,7 @@ import src
 from itertools import groupby
 import numpy as np
 
-NUMBERS = [int(S) for S in src.read(10)]
+NUMBERS = [int(S) for S in src.read()]
 
 
 def jolt(numbers=None):

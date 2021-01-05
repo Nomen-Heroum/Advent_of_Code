@@ -1,7 +1,7 @@
 import src
 import re
 
-STRINGS = src.read(5)
+STRINGS = src.read()
 
 
 def is_nice(string):

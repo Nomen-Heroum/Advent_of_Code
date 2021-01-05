@@ -3,7 +3,7 @@ import re
 import itertools
 import heapq
 
-STRING = src.read(22, split='\n\n')[0]
+STRING = src.read(split='\n\n')[0]
 NODES = re.findall(r'x(\d+)-y(\d+)\s+\d+T\s+(\d+)T\s+(\d+)T\s+\d+%', STRING)  # Extract the numbers
 NODES = [tuple(int(s) for s in tup) for tup in NODES]  # Convert to ints
 

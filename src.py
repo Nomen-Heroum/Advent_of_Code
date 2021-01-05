@@ -2,13 +2,15 @@
 This file contains general use functions for all exercises.
 """
 import heapq
+import inspect
 import os
-
+import re
 import numpy as np
 
 
-def read(day: int, split='\n'):
+def read(split='\n'):
     """Returns a list containing one string for each line of the day's input file."""
+    day = re.findall(r'\d+', inspect.stack()[1].filename)[-1]  # Last number in the filename of the caller
     with open(f"Input/input{day}.txt") as f:
         strings = f.read().strip().split(split)
     return strings

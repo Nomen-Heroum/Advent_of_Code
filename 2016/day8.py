@@ -3,7 +3,7 @@ import numpy as np
 import re
 import matplotlib.pyplot as plt
 
-INSTRUCTIONS = src.read(8)
+INSTRUCTIONS = src.read()
 SCREEN = np.zeros((6, 50), dtype=int)
 
 

@@ -1,7 +1,7 @@
 import src
 from parse import parse
 
-STRINGS = src.read(14)
+STRINGS = src.read()
 
 
 def initialize(strings, version=1):

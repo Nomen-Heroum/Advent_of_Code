@@ -1,7 +1,7 @@
 import src
 import parse
 
-STRINGS = src.read(16)
+STRINGS = src.read()
 PATTERN = parse.compile("Sue {}: {}: {:d}, {}: {:d}, {}: {:d}")
 SUES = {}
 for s in STRINGS:

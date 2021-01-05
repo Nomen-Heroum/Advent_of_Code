@@ -1,7 +1,7 @@
 import src
 import regex
 
-STRINGS = src.read(19, split='\n\n')
+STRINGS = src.read(split='\n\n')
 RULES = STRINGS[0].split('\n')
 MESSAGES = STRINGS[1].split('\n')
 

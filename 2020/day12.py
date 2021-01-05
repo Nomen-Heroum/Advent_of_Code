@@ -1,7 +1,7 @@
 import src
 import parse
 
-STRINGS = src.read(12)
+STRINGS = src.read()
 INSTRUCTIONS = list(parse.parse('{}{:d}', s) for s in STRINGS)
 DIR = ['N', 'E', 'S', 'W']
 DICT = {

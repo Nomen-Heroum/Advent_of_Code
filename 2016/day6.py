@@ -1,7 +1,7 @@
 import src
 from collections import defaultdict
 
-STRINGS = src.read(6)
+STRINGS = src.read()
 
 
 def error_correct(strings, version=1):

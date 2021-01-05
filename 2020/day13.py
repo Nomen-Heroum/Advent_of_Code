@@ -1,7 +1,7 @@
 import src
 import re
 
-STRINGS = src.read(13)
+STRINGS = src.read()
 EARLIEST = int(STRINGS[0])
 IDS = [int(s) for s in re.findall(r'\d+', STRINGS[1])]
 IDS_INDICES = []

@@ -1,7 +1,7 @@
 import src
 import numpy as np
 
-NUMBERS = np.array([[int(n) for n in s.split()] for s in src.read(3)])
+NUMBERS = np.array([[int(n) for n in s.split()] for s in src.read()])
 
 
 def count_triangles(numbers: np.ndarray, version=1):

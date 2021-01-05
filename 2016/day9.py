@@ -1,7 +1,7 @@
 import src
 import re
 
-FILE = src.read(9)[0]
+FILE = src.read()[0]
 
 
 def decompress(file: str, version=1):

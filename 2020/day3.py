@@ -1,7 +1,7 @@
 import src
 import math
 
-strings = src.read(3)
+strings = src.read()
 
 
 def count_trees(right, down, field=strings):

@@ -1,6 +1,6 @@
 import src
 
-NUMBERS = [[int(n) for n in s.split()] for s in src.read(2)]
+NUMBERS = [[int(n) for n in s.split()] for s in src.read()]
 
 
 def checksum(numbers):

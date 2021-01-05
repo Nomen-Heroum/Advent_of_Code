@@ -1,6 +1,6 @@
 import src
 
-STRINGS = src.read(12)
+STRINGS = src.read()
 
 
 def run(strings: list, version=1):

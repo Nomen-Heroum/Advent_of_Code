@@ -2,7 +2,7 @@ import src
 import numpy as np
 from scipy.ndimage import convolve
 
-STRING = src.read(18)[0]
+STRING = src.read()[0]
 
 
 def count_safe(string: str, rows: int):

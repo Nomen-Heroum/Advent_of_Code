@@ -1,7 +1,7 @@
 import src
 import re
 
-pp_strings = src.read(4, split='\n\n')
+pp_strings = src.read(split='\n\n')
 
 
 def read_pp(pp_string):

@@ -5,7 +5,7 @@ from collections import defaultdict
 import inspect
 import matplotlib.pyplot as plt
 
-BLOCKS = src.read(20, split='\n\n')  # List with one separate string for each block of text
+BLOCKS = src.read(split='\n\n')  # List with one separate string for each block of text
 SNEK_STRING = inspect.cleandoc("""
                                     # 
                   #    ##    ##    ###

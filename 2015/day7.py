@@ -1,6 +1,6 @@
 import src
 
-instructions = src.read(7)
+instructions = src.read()
 
 OPERATORS = {
     'NOT': lambda x: ~x,

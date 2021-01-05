@@ -1,6 +1,6 @@
 import src
 
-STRINGS = src.read(8)
+STRINGS = src.read()
 
 
 def find_loop(strings, change=None):

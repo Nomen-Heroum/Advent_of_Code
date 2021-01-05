@@ -1,6 +1,6 @@
 import src
 
-BLACKLIST = sorted([tuple(int(n) for n in s.split('-')) for s in src.read(20)])
+BLACKLIST = sorted([tuple(int(n) for n in s.split('-')) for s in src.read()])
 
 
 def lowest_valid(blacklist):

@@ -1,6 +1,6 @@
 import src
 
-RULES = src.read(7)
+RULES = src.read()
 
 
 def parse(rule):

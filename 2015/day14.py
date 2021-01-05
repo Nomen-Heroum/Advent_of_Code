@@ -2,7 +2,7 @@ import src
 import parse
 import numpy as np
 
-STRINGS = src.read(14)
+STRINGS = src.read()
 END_TIME = 2503
 PATTERN = parse.compile("{} can fly {:d} km/s for {:d} seconds, but then must rest for {:d} seconds.")
 

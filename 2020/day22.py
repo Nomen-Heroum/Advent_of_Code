@@ -1,7 +1,7 @@
 import src
 from copy import deepcopy
 
-PLAYERS = src.read(22, '\n\n')
+PLAYERS = src.read('\n\n')
 
 
 def play_combat(players, recursive=False):

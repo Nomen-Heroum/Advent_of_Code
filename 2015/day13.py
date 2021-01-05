@@ -2,7 +2,7 @@ import src
 import itertools
 import re
 
-STRINGS = src.read(13)
+STRINGS = src.read()
 
 
 def parse(strings):

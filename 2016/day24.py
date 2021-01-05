@@ -1,7 +1,7 @@
 import src
 import heapq
 
-STRINGS = src.read(24)
+STRINGS = src.read()
 
 
 def map_out(strings: list):

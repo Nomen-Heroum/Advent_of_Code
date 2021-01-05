@@ -1,6 +1,6 @@
 import src
 
-GROUPS = src.read(6, split='\n\n')
+GROUPS = src.read(split='\n\n')
 
 
 def any_count(group: str):

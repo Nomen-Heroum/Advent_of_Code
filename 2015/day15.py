@@ -2,7 +2,7 @@ import src
 import parse
 import numpy as np
 
-STRINGS = src.read(15)
+STRINGS = src.read()
 PATTERN = parse.compile("{}: capacity {:d}, durability {:d}, flavor {:d}, texture {:d}, calories {:d}")
 
 
