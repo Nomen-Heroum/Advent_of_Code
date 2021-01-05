@@ -4,15 +4,6 @@ NUMBERS = [19, 20, 14, 0, 9, 1]
 
 
 def play(numbers, end):
-    while len(numbers) < end:
-        try:
-            numbers.append(numbers[:-1][::-1].index(numbers[-1]) + 1)
-        except ValueError:
-            numbers.append(0)
-    return numbers[-1]
-
-
-def play2(numbers, end):
     dictionary = {k: i+1 for i, k in enumerate(numbers[:-1])}
     last = numbers[-1]
     for i in range(len(numbers), end):
@@ -29,11 +20,11 @@ def main(numbers=None):
     numbers = numbers or NUMBERS
 
     print("Part One:")
-    ans1 = play(numbers, 2020)
+    ans1 = play(numbers, 2020)  # 1325
     print(f"The 2020th number spoken is {ans1}.")
-    
+
     print("\nPart Two:")
-    ans2 = play2(numbers, 30000000)
+    ans2 = play(numbers, 30_000_000)  # 59006
     print(f"The 30000000th number spoken is {ans2}.")
     src.copy(ans2)
 
