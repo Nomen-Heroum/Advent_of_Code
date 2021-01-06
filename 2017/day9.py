@@ -1,5 +1,5 @@
 import src
-import regex as re
+import re
 
 STREAM = src.read()[0]
 
