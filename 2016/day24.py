@@ -35,20 +35,19 @@ def neighbours(node, maze=MAZE):
                 yield new_coord, locations
 
 
-def a_star(start, h, neighs, maze=MAZE):
-    """A* pathfinding algorithm from src.py, adapted for today's puzzle."""
-    guess = h(start)  # Best guess for the shortest path length
+def dijkstra(start, neighs, maze=MAZE):
+    """Dijkstra pathfinding algorithm, adapted from src.a_star"""
+    print("Working...\r", end='')
     entry_id = 0
 
-    # Priority queue: f(n) is prioritised, with ties broken first by h(n), then by last inserted.
-    queue = [(guess, guess, entry_id, start, 0)]  # (f(n), h(n), entry, node, g(n))
+    # Priority queue: g(n) is prioritised, with ties broken by last inserted.
+    queue = [(0, entry_id, start)]  # (g(n), entry, node)
 
     visited = {start}
-
-    ans1 = 0
+    ans1 = False  # Answer for part 1
 
     while queue:
-        _f, _h, _id, node, g = heapq.heappop(queue)
+        g, _id, node = heapq.heappop(queue)
         for neigh in neighs(node, maze):
             if not neigh[1]:  # Return when there are no more important locations
                 if not ans1:
@@ -58,9 +57,7 @@ def a_star(start, h, neighs, maze=MAZE):
             if neigh not in visited:
                 entry_id -= 1  # Negative to ensure LIFO
                 g_n = g + 1
-                h_n = h(neigh)
-                f_n = g_n + h_n  # Total path cost
-                heapq.heappush(queue, (f_n, h_n, entry_id, neigh, g_n))
+                heapq.heappush(queue, (g_n, entry_id, neigh))
                 visited.add(neigh)  # We mark the neighbours as visited to prevent duplicates
 
     # If every possible node has been visited
@@ -68,7 +65,7 @@ def a_star(start, h, neighs, maze=MAZE):
 
 
 def main():
-    ans1, ans2 = a_star(START, lambda node: 0, neighbours)   # Effectively the Dijkstra algorithm
+    ans1, ans2 = dijkstra(START, neighbours)   # Effectively the Dijkstra algorithm
     print("Part One:")
     print(f"The fewest number of steps required is {ans1}.")  # 412
 
