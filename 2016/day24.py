@@ -35,7 +35,7 @@ def neighbours(node, maze=MAZE):
                 yield new_coord, locations
 
 
-def a_star(start, h, neighs, maze=MAZE, version=1):
+def a_star(start, h, neighs, maze=MAZE):
     """A* pathfinding algorithm from src.py, adapted for today's puzzle."""
     guess = h(start)  # Best guess for the shortest path length
     entry_id = 0
@@ -45,12 +45,16 @@ def a_star(start, h, neighs, maze=MAZE, version=1):
 
     visited = {start}
 
+    ans1 = 0
+
     while queue:
         _f, _h, _id, node, g = heapq.heappop(queue)
         for neigh in neighs(node, maze):
             if not neigh[1]:  # Return when there are no more important locations
-                if version == 1 or neigh[0] == start[0]:
-                    return g + 1
+                if not ans1:
+                    ans1 = g + 1
+                if neigh[0] == start[0]:
+                    return ans1, g + 1
             if neigh not in visited:
                 entry_id -= 1  # Negative to ensure LIFO
                 g_n = g + 1
@@ -64,13 +68,12 @@ def a_star(start, h, neighs, maze=MAZE, version=1):
 
 
 def main():
+    ans1, ans2 = a_star(START, lambda node: 0, neighbours)   # Effectively the Dijkstra algorithm
     print("Part One:")
-    ans1 = a_star(START, lambda node: 0, neighbours)   # Effectively the Dijkstra algorithm
     print(f"The fewest number of steps required is {ans1}.")  # 412
 
     print("\nPart Two:")
-    ans2 = a_star(START, lambda node: 0, neighbours, version=2)  # 664
-    print(f"If the robot has to come back, the fewest number of steps is {ans2}.")
+    print(f"If the robot has to come back, the fewest number of steps is {ans2}.")  # 664
     src.copy(ans2)
 
 
