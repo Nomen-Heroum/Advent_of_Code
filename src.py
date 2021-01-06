@@ -62,6 +62,8 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
     Returns:
         The length of the discovered path.
     """
+    print("Working...\r", end='')
+
     guess = h(start, target)  # Best guess for the shortest path length
     entry_id = 0
 
