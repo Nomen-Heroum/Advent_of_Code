@@ -5,19 +5,17 @@ STREAM = src.read()[0]
 
 
 def find_score(stream):
-    stream = re.sub(r'!.', '', stream)
-    garbage_chars = sum(len(s) for s in re.findall(r'<(.*?)>', stream))  # Part 2
-    stream = re.sub(r'<.*?>', '', stream)  # Clean the stream
-    groups = [stream.replace(',', '')[1:-1]]
-    level = 1
+    stream = re.sub(r'!.', '', stream)  # Remove escaped characters
+    garbage_chars = sum(len(s) for s in re.findall(r'<(.*?)>', stream))  # Count the garbage
+    stream = re.sub(r',|<.*?>', '', stream)  # Clean the stream
+    level = 0
     score = 0
-    while groups:
-        score += level * len(groups)
-        new = []
-        for g in groups:
-            new += re.findall('{((?R)*)}', g)
-        level += 1
-        groups = new
+    for char in stream:
+        if char == '{':
+            level += 1
+            score += level
+        else:
+            level -= 1
     return score, garbage_chars
 
 
