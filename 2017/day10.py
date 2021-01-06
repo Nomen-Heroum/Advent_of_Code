@@ -31,7 +31,7 @@ def knot(lengths, version=1, size=256):
     dense_hash = [functools.reduce(operator.xor, b) for b in blocks]
     knot_hash = ''
     for n in dense_hash:
-        knot_hash += hex(n)[-2:].replace('x', '0')
+        knot_hash += format(n, '02x')
     return knot_hash
 
 
