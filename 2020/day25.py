@@ -11,12 +11,9 @@ def find_encryption_key(public_key_1: int, public_key_2: int, modulus: int):
     for i in range(1, modulus+1):
         num = num*7 % modulus
         if num == public_key_1 or num == public_key_2:
-            print(f"Found loop size: {i}")
             loop_sizes.append(i)
             if len(loop_sizes) == 2:
                 break
-        if (i+1) % 10_000 == 0:
-            print(f"{i+1} out of {modulus} combinations tried.\r", end='')
 
     return pow(7, loop_sizes[0] * loop_sizes[1], modulus)
 

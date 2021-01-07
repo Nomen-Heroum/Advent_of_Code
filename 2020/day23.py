@@ -4,7 +4,7 @@ import src
 CUPS = [int(c) for c in '942387615']
 
 
-def alt_move(neighbours, current, n):
+def move(neighbours, current, n):
     pick = current
     pickup = []
     for _ in range(3):
@@ -23,13 +23,12 @@ def alt_move(neighbours, current, n):
     return neighbours, current
 
 
-def alt_play(neighbours, start, moves=100):
+def play(neighbours, start, moves=100):
+    print(f"The crab is working...\r", end='')
     current = start
     n = max(neighbours)
     for mov in range(moves):
-        neighbours, current = alt_move(neighbours, current, n)
-        if moves >= 100 and (mov + 1) % (moves // 100) == 0:
-            print(f"{100 * (mov + 1) / moves}% complete.\r", end='')
+        neighbours, current = move(neighbours, current, n)
     return neighbours
 
 
@@ -38,7 +37,7 @@ def main(cups=None):
 
     print("Part One:")
     neighbours1 = [0] + [cups[(cups.index(i+1) + 1) % len(cups)] for i in range(len(cups))]
-    neighs1 = alt_play(neighbours1, cups[0])
+    neighs1 = play(neighbours1, cups[0])
     ans1 = ''
     current = 1
     for _ in range(len(cups) - 1):
@@ -49,7 +48,7 @@ def main(cups=None):
     print("\nPart Two:")
     neighbours2 = ([0] + [(cups + [10])[cups.index(i+1) + 1] for i in range(len(cups))]
                    + list(range(11, 1_000_001)) + [cups[0]])
-    neighs2 = alt_play(neighbours2, cups[0], moves=10_000_000)
+    neighs2 = play(neighbours2, cups[0], moves=10_000_000)
     star1 = neighs2[1]
     star2 = neighs2[star1]
     ans2 = star1 * star2

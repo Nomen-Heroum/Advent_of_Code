@@ -4,6 +4,7 @@ NUMBERS = [19, 20, 14, 0, 9, 1]
 
 
 def play(numbers, end):
+    print(f"The elves are playing...\r", end='')
     dictionary = {k: i+1 for i, k in enumerate(numbers[:-1])}
     last = numbers[-1]
     for i in range(len(numbers), end):
@@ -25,7 +26,7 @@ def main(numbers=None):
 
     print("\nPart Two:")
     ans2 = play(numbers, 30_000_000)  # 59006
-    print(f"The 30000000th number spoken is {ans2}.")
+    print(f"The 30,000,000th number spoken is {ans2}.")
     src.copy(ans2)
 
 

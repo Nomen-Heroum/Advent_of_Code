@@ -7,6 +7,7 @@ SALT = 'ihaygndm'
 
 
 def find_otp(salt, version=1):
+    print("Working...\r", end='')
     lowest = 0
     potential_keys = {}
     key_indices = []
