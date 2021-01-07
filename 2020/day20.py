@@ -65,18 +65,17 @@ def build_image(tiles: dict, edges: dict):
     assert tiles_wide**2 == n, "Unable to find square dimensions."
 
     remaining = dict(tiles)  # Dictionary of all tiles that haven't been fit in yet
-    first = find_corners(tiles, edges)[0]  # One of the corner tile IDs
-    current_tile = tiles[first]
-    remaining.pop(first)
+    corner = find_corners(tiles, edges)[0]  # One of the corner tile IDs
+    current_tile = remaining.pop(corner)
+    while not edges[tuple(current_tile[0])] == edges[tuple(current_tile[:, 0])] == 1:
+        current_tile = np.rot90(current_tile)  # Ensuring the corner is rotated right; no need to flip
 
     tile_width = current_tile.shape[0] - 2  # Width of each tile in the final image (8)
     total_size = tiles_wide * tile_width  # Size of the final picture
     picture = np.zeros((total_size, total_size), dtype=int)  # Empty array to build the picture in
-    while not edges[tuple(current_tile[0])] == edges[tuple(current_tile[:, 0])] == 1:
-        current_tile = np.rot90(current_tile)  # Ensuring the corner is rotated right; no need to flip
 
-    # Function for finding the tile that has a certain top edge
     def find_fit(edge):
+        """Finds the oriented tile that has a certain top edge."""
         for tile_id, tile in remaining.items():
             for oriented_tile in orientations(tile):
                 if np.array(oriented_tile[0] == edge).all():
@@ -104,10 +103,13 @@ def roughness(picture: np.ndarray, snek=SNEK):
     snek_count = 0
     pic_x, pic_y = picture.shape
     snek_x, snek_y = snek.shape
+    max_x = pic_x - snek_x + 1  # Maximum x and y where the top left corner of a snek may be
+    max_y = pic_y - snek_y + 1
 
     for pic in orientations(picture):
-        options = np.argwhere(pic[1:pic_x - snek_x + 2, :pic_y - snek_y + 1] == 1)  # Indices in pic where a monster
-        for place in options:                                                       # might be (have a 1 below them)
+        # Identify indices in pic with a 1 below them, so that they may be the top left corner of a snek
+        options = np.argwhere(pic[1:max_x + 1, :max_y] == 1)
+        for place in options:
             snek_here = True
             for piece in np.argwhere(snek):  # Pieces of the monster
                 if pic[tuple(place + piece)] == 0:
@@ -121,7 +123,8 @@ def roughness(picture: np.ndarray, snek=SNEK):
             print(f"{snek_count} sneks were counted.")
             plt.imshow(pic)
             return (pic == 1).sum()  # Sneks have a value of 2
-    assert snek_count, "No orientation found with sneks."
+
+    raise EOFError("No orientation found with sneks.")
 
 
 def main():
