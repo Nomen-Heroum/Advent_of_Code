@@ -1,8 +1,8 @@
 import src
+import inspect
 import numpy as np
 import re
 from collections import defaultdict
-import inspect
 import matplotlib.pyplot as plt
 
 BLOCKS = src.read(split='\n\n')  # List with one separate string for each block of text
