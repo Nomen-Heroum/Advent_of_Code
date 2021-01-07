@@ -9,11 +9,11 @@ def count_matches(a_start, b_start, iterations):
     matches = 0
     a = a_start
     b = b_start
-    mod = 1 << 16
+    last_bits = (1 << 16) - 1
     for i in range(1, iterations + 1):
         a = (a * 16807) % 2147483647
         b = (b * 48271) % 2147483647
-        if a % mod == b % mod:
+        if a & last_bits == b & last_bits:
             matches += 1
             print(f"Counting... Found {matches} matches, {100 * i // iterations}% done.\r", end='')
     return matches
@@ -25,15 +25,15 @@ def count_matches_2(a_start, b_start, iterations):
     matches = 0
     a = a_start
     b = b_start
-    mod = 1 << 16
+    last_bits = (1 << 16) - 1
     for i in range(1, iterations + 1):
         a = (a * 16807) % 2147483647
         b = (b * 48271) % 2147483647
-        while a % 4:
+        while a & 0b11:
             a = (a * 16807) % 2147483647
-        while b % 8:
+        while b & 0b111:
             b = (b * 48271) % 2147483647
-        if a % mod == b % mod:
+        if a & last_bits == b & last_bits:
             matches += 1
             print(f"Counting... Found {matches} matches, {100 * i // iterations}% done.\r", end='')
     return matches
