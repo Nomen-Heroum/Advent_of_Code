@@ -15,31 +15,31 @@ SNEK = np.genfromtxt(' '.join(SNEK_STRING).splitlines()) == 1  # Boolean array c
 
 def tile_dict(blocks: list):
     """Builds a dictionary with entries of the form <ID: tile array> out of the block strings"""
-    dct = {}
+    tiles = {}
     for block in blocks:
-        key = int(re.search(r'\d+', block)[0])  # Extract the tile ID
+        tile_id = int(re.search(r'\d+', block)[0])
         strings = block.split('\n')[1:]
-        value = np.array([np.fromstring(','.join(s.translate(str.maketrans('.#', '01'))), dtype=int, sep=',')
-                          for s in strings])
-        dct[key] = value
-    return dct
+        tile_array = np.array([np.fromstring(','.join(s.translate(str.maketrans('.#', '01'))), dtype=int, sep=',')
+                               for s in strings])
+        tiles[tile_id] = tile_array
+    return tiles
 
 
 def orientations(tile: np.ndarray):
     """Yields all different orientations of a tile"""
-    for d in (1, -1):  # Tile is not flipped/flipped
-        for rot in range(4):  # CCW quarter turns
-            yield np.rot90(tile, k=rot)[:, ::d]
+    for direction in (1, -1):  # Tile is not flipped/flipped
+        for rotation in range(4):  # CCW quarter turns
+            yield np.rot90(tile, k=rotation)[:, ::direction]
 
 
-def edge_dict(tls: dict):
+def edge_dict(tiles: dict):
     """Builds a dictionary counting how often each edge occurs"""
-    dct = defaultdict(int)
-    for tile in tls.values():
-        for ori in orientations(tile):
-            edge = tuple(ori[0])
-            dct[edge] += 1
-    return dct
+    edges = defaultdict(int)
+    for tile in tiles.values():
+        for oriented_tile in orientations(tile):
+            edge = tuple(oriented_tile[0])  # Top edge of the current orientation
+            edges[edge] += 1
+    return edges
 
 
 # Global dicts for the input data
@@ -47,60 +47,60 @@ TILES = tile_dict(BLOCKS)
 EDGES = edge_dict(TILES)
 
 
-def find_corners(tls: dict, edg: dict):
+def find_corners(tiles: dict, edges: dict):
     """Makes a list of IDs of the corner pieces"""
     corners = []
-    for tile_id, tile in tls.items():
-        if sum(edg[tuple(o[0])] for o in orientations(tile)) == 12:  # 8 orientations, 4 have non-unique edges
+    for tile_id, tile in tiles.items():
+        if sum(edges[tuple(o[0])] == 1 for o in orientations(tile)) == 4:  # 4 out of 8 possible edges are unique
             corners.append(tile_id)
     return corners
 
 
 # Part 2 functions
-def build_image(tls: dict, edg: dict):
+def build_image(tiles: dict, edges: dict):
     """Builds the total image out of the grids"""
-    print("Building image...")
+    print("Building image...\r", end='')
 
-    n = len(tls)
-    size = int(n**.5)
-    assert size**2 == n, "Unable to find square dimensions."
+    n = len(tiles)
+    tiles_wide = int(n**.5)
+    assert tiles_wide**2 == n, "Unable to find square dimensions."
 
-    remaining = dict(tls)  # Dictionary of all tiles that haven't been fit in yet
-    first = find_corners(tls, edg)[0]  # One of the corner tile IDs
-    current_tile = tls[first]
+    remaining = dict(tiles)  # Dictionary of all tiles that haven't been fit in yet
+    first = find_corners(tiles, edges)[0]  # One of the corner tile IDs
+    current_tile = tiles[first]
     remaining.pop(first)
 
-    d = current_tile.shape[0] - 2  # Width of each tile in the final image (8)
-    total_size = size * d  # Size of the final picture
+    tile_width = current_tile.shape[0] - 2  # Width of each tile in the final image (8)
+    total_size = tiles_wide * tile_width  # Size of the final picture
     picture = np.zeros((total_size, total_size), dtype=int)  # Empty array to build the picture in
-    while not edg[tuple(current_tile[0])] == edg[tuple(current_tile[:, 0])] == 1:
+    while not edges[tuple(current_tile[0])] == edges[tuple(current_tile[:, 0])] == 1:
         current_tile = np.rot90(current_tile)  # Ensuring the corner is rotated right; no need to flip
 
     # Function for finding the tile that has a certain top edge
-    def find_fit(e):
+    def find_fit(edge):
         for tile_id, tile in remaining.items():
-            for ori in orientations(tile):
-                if np.array(ori[0] == e).all():
+            for oriented_tile in orientations(tile):
+                if np.array(oriented_tile[0] == edge).all():
                     remaining.pop(tile_id)  # Remove the fitting tile from the remaining pieces
-                    return ori
+                    return oriented_tile
 
-    for x in range(0, total_size, d):      # Scanning where the tiles need to go from top to bottom
-        for y in range(0, total_size, d):  # Left to right on each line of tiles
+    for x in range(0, total_size, tile_width):      # Scanning where the tiles need to go from top to bottom
+        for y in range(0, total_size, tile_width):  # Left to right on each line of tiles
             if y == 0:  # First tile in each line
                 if x > 0:  # We already have a current_tile for x=0, y=0
-                    current_tile = find_fit(x_edge)
-                x_edge = current_tile[-1]
+                    current_tile = find_fit(bottom_edge)
+                bottom_edge = current_tile[-1]
             else:
-                current_tile = find_fit(y_edge).T  # Transpose since we need the left edge, not the top
-            picture[x:x+d, y:y+d] = current_tile[1:-1, 1:-1]  # Edit the current region
-            y_edge = current_tile[:, -1]
+                current_tile = find_fit(right_edge).T  # Transpose since we need the left edge, not the top
+            picture[x:x+tile_width, y:y+tile_width] = current_tile[1:-1, 1:-1]  # Edit the current region
+            right_edge = current_tile[:, -1]
 
     return picture
 
 
 def roughness(picture: np.ndarray, snek=SNEK):
     """Calculates the roughness of the water"""
-    print("Trying to find sneks...")
+    print("Trying to find sneks...\r", end='')
 
     snek_count = 0
     pic_x, pic_y = picture.shape
@@ -127,12 +127,12 @@ def roughness(picture: np.ndarray, snek=SNEK):
 
 def main():
     print("Part One:")
-    ans1 = np.prod(find_corners(TILES, EDGES))
+    ans1 = np.prod(find_corners(TILES, EDGES))  # 5966506063747
     print(f"The product of corner IDs is {ans1}.")
 
     print("\nPart Two:")
     picture = build_image(TILES, EDGES)
-    ans2 = roughness(picture)
+    ans2 = roughness(picture)  # 1714
     print(f"The roughness of water in this image is {ans2}.")
     src.copy(ans2)
 
