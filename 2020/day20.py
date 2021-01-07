@@ -10,7 +10,7 @@ SNEK_STRING = inspect.cleandoc("""
                                     # 
                   #    ##    ##    ###
                    #  #  #  #  #  #   """).translate(str.maketrans(' #', '01'))
-SNEK = np.genfromtxt(' '.join(SNEK_STRING).splitlines()) == 1  # Boolean array containing the snek
+SNEK = np.genfromtxt(SNEK_STRING.splitlines(), delimiter=1) == 1  # Boolean array containing the snek
 
 
 def tile_dict(blocks: list):
@@ -18,9 +18,8 @@ def tile_dict(blocks: list):
     tiles = {}
     for block in blocks:
         tile_id = int(re.search(r'\d+', block)[0])
-        strings = block.split('\n')[1:]
-        tile_array = np.array([np.fromstring(','.join(s.translate(str.maketrans('.#', '01'))), dtype=int, sep=',')
-                               for s in strings])
+        block = block.translate(str.maketrans('.#', '01'))  # Turn the image pieces into 0s and 1s
+        tile_array = np.genfromtxt(block.splitlines()[1:], int, delimiter=1)  # Cast it into an array
         tiles[tile_id] = tile_array
     return tiles
 
