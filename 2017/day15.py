@@ -15,7 +15,6 @@ def count_matches(a_start, b_start, iterations):
         b = (b * 48271) % 2147483647
         if a & last_bits == b & last_bits:
             matches += 1
-            print(f"Counting... Found {matches} matches, {100 * i // iterations}% done.\r", end='')
     return matches
 
 
@@ -35,7 +34,6 @@ def count_matches_2(a_start, b_start, iterations):
             b = (b * 48271) % 2147483647
         if a & last_bits == b & last_bits:
             matches += 1
-            print(f"Counting... Found {matches} matches, {100 * i // iterations}% done.\r", end='')
     return matches
 
 
