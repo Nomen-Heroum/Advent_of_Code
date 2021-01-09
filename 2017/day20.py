@@ -9,6 +9,7 @@ PARTICLES = pd.DataFrame([list(PATTERN.parse(s)) for s in src.read()])
 
 def find_closest(particles, large=1e10):
     def d(p, v, a):
+        """Estimate of the distance after a long time"""
         return abs(a * large**2 / 2 + v * large + p)
 
     distances = []
@@ -19,15 +20,16 @@ def find_closest(particles, large=1e10):
 
 def collide(particles: pd.DataFrame):
     def is_sorted():
+        """Checks whether particles are in their final configurations along all 3 axes"""
         for i in range(3):
             if not particles.sort_values(i).equals(particles.sort_values([i, i+3, i+6])):
                 return False
         return True
 
     while not is_sorted():
-        particles.values[:, 3:6] += particles.values[:, -3:]
-        particles.values[:, :3] += particles.values[:, 3:6]
-        particles.drop_duplicates(subset=[0, 1, 2], keep=False, inplace=True)
+        particles.values[:, 3:6] += particles.values[:, -3:]  # Update velocities
+        particles.values[:, :3] += particles.values[:, 3:6]  # Update positions
+        particles.drop_duplicates(subset=[0, 1, 2], keep=False, inplace=True)  # Handle collisions
     return len(particles)
 
 
