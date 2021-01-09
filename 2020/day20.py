@@ -16,9 +16,10 @@ SNEK = np.genfromtxt(SNEK_STRING.splitlines(), delimiter=1) == 1  # Boolean arra
 def tile_dict(blocks: list):
     """Builds a dictionary with entries of the form <ID: tile array> out of the block strings"""
     tiles = {}
+    translation = str.maketrans('.#', '01')
     for block in blocks:
         tile_id = int(re.search(r'\d+', block)[0])
-        block = block.translate(str.maketrans('.#', '01'))  # Turn the image pieces into 0s and 1s
+        block = block.translate(translation)  # Turn the image pieces into 0s and 1s
         tile_array = np.genfromtxt(block.splitlines()[1:], int, delimiter=1)  # Cast it into an array
         tiles[tile_id] = tile_array
     return tiles
