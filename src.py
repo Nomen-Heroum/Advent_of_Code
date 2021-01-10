@@ -108,7 +108,7 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
 
 
 def orientations(tile: np.ndarray):
-    """Yields all different orientations of a tile"""
+    """Yields all different orientations of a 2D NumPy array."""
     for direction in (1, -1):  # Tile is not flipped/flipped
         for rotation in range(4):  # CCW quarter turns
             yield np.rot90(tile, k=rotation)[:, ::direction]
