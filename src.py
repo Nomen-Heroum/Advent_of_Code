@@ -105,3 +105,10 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
 
     # If every possible node has been visited
     raise EOFError("No path to the target could be found.")
+
+
+def orientations(tile: np.ndarray):
+    """Yields all different orientations of a tile"""
+    for direction in (1, -1):  # Tile is not flipped/flipped
+        for rotation in range(4):  # CCW quarter turns
+            yield np.rot90(tile, k=rotation)[:, ::direction]

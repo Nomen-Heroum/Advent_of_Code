@@ -25,18 +25,11 @@ def tile_dict(blocks: list):
     return tiles
 
 
-def orientations(tile: np.ndarray):
-    """Yields all different orientations of a tile"""
-    for direction in (1, -1):  # Tile is not flipped/flipped
-        for rotation in range(4):  # CCW quarter turns
-            yield np.rot90(tile, k=rotation)[:, ::direction]
-
-
 def edge_dict(tiles: dict):
     """Builds a dictionary counting how often each edge occurs"""
     edges = defaultdict(int)
     for tile in tiles.values():
-        for oriented_tile in orientations(tile):
+        for oriented_tile in src.orientations(tile):
             edge = tuple(oriented_tile[0])  # Top edge of the current orientation
             edges[edge] += 1
     return edges
@@ -51,7 +44,7 @@ def find_corners(tiles: dict, edges: dict):
     """Makes a list of IDs of the corner pieces"""
     corners = []
     for tile_id, tile in tiles.items():
-        if sum(edges[tuple(o[0])] == 1 for o in orientations(tile)) == 4:  # 4 out of 8 possible edges are unique
+        if sum(edges[tuple(o[0])] == 1 for o in src.orientations(tile)) == 4:  # 4 out of 8 possible edges are unique
             corners.append(tile_id)
     return corners
 
@@ -78,7 +71,7 @@ def build_image(tiles: dict, edges: dict):
     def find_fit(edge):
         """Finds the oriented tile that has a certain top edge."""
         for tile_id, tile in remaining.items():
-            for oriented_tile in orientations(tile):
+            for oriented_tile in src.orientations(tile):
                 if np.array(oriented_tile[0] == edge).all():
                     remaining.pop(tile_id)  # Remove the fitting tile from the remaining pieces
                     return oriented_tile
@@ -107,7 +100,7 @@ def roughness(picture: np.ndarray, snek=SNEK):
     max_x = pic_x - snek_x + 1  # Maximum x and y where the top left corner of a snek may be
     max_y = pic_y - snek_y + 1
 
-    for pic in orientations(picture):
+    for pic in src.orientations(picture):
         # Identify indices in pic with a 1 below them, so that they may be the top left corner of a snek
         options = np.argwhere(pic[1:max_x + 1, :max_y] == 1)
         for place in options:
