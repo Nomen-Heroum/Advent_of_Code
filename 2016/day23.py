@@ -37,7 +37,8 @@ def run(strings: list, version=1, toggle_dict=None):
                     index = 16
                     continue
                 elif index == 19:
-                    return reg['a'] + 95**2
+                    a, b = [int(strings[i].split()[1]) for i in (19, 20)]
+                    return reg['a'] + a * b
 
             instr, *value = strings[index].split(' ')
             if toggled[index]:
