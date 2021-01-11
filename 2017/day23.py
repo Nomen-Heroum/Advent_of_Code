@@ -26,7 +26,7 @@ def run(strings: list, debug=True):
         try:
             if strings == STRINGS and not debug and index == 8:
                 step = -int(strings[30].split()[-1])
-                # h counts how many numbers between b and c with a step of 'step' (17) are compound
+                # h counts how many numbers between b and c with a step of 'step' (17) are composite
                 return sum(any(n % i == 0 for i in range(2, math.isqrt(n) + 1))
                            for n in range(reg['b'], reg['c'] + 1, step))
 
