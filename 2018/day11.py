@@ -28,7 +28,9 @@ def fullest_region(serial_number, size=300):
         if i == 3:
             y, x = divmod(regions.argmax(), size)
             coordinate = f"{x+1},{y+1}"
-        maximum = regions.max()
+        maximum = regions[:end, :end].max()
+        if maximum < 0:
+            break
         if maximum > best_region:
             best_region = maximum
             best_size = i
