@@ -2,6 +2,7 @@ import src
 import numpy as np
 import re
 import matplotlib.pyplot as plt
+from matplotlib.animation import FuncAnimation
 import itertools
 
 STRINGS = src.read()
@@ -24,18 +25,20 @@ def find_message(x, y, vx, vy):
         width = new_width
 
 
-def animate(x, y, vx, vy, frames=20_000, start=0):
+def animate(x, y, vx, vy, t=np.arange(20_000), interval=None):
+    interval = interval or int(1000 * (t[-1] - t[0]) / len(t))
     fig, ax = plt.subplots()
     ax.set_aspect(1)
-    scat = ax.scatter(x, y)
+    ax.set_facecolor('0.0')
+    scat = ax.scatter(x + t[0] * vx, y + t[0] * vy, c='#ffff50')
 
     def update(i):
-        x_i = x + i * vx
-        y_i = y + i * vy
+        x_i = x + t[i] * vx
+        y_i = y + t[i] * vy
         scat.set_offsets(np.array([x_i, y_i]).T)
         return scat,
 
-    return src.Player(fig, update, interval=100, frames=frames, start=start)
+    return src.Player(fig, update, interval=interval, frames=len(t))
 
 
 def main():
@@ -54,5 +57,4 @@ def main():
 
 if __name__ == '__main__':
     message_time = main()
-    anim = animate(X + message_time * VX, Y + message_time * VY, VX, VY,
-                   frames=np.arange(-5, 5, 0.1), start=-5)
+    anim = animate(X, Y, VX, VY, t=np.linspace(message_time-5, message_time+5, 251))
