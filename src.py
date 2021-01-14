@@ -144,12 +144,10 @@ class Player(FuncAnimation):
     def play(self):
         while self.step:
             self.i += self.step
-            if self.i <= self.min:
-                self.i = self.min
-                self.stop()
-            elif self.i >= self.max:
+            if self.i < self.min:
                 self.i = self.max
-                self.stop()
+            elif self.i > self.max:
+                self.i = self.min
             yield self.i
 
     def start(self):
