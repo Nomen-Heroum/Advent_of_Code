@@ -63,8 +63,7 @@ def execute(instructions, opcode_ids, opcodes=None):
     opcodes = opcodes or OPCODES
 
     reg = [0] * 4
-    for instr in instructions:
-        op_id, a, b, c = instr
+    for op_id, a, b, c in instructions:
         code = opcode_ids[op_id]
         reg[c] = opcodes[code](reg, a, b)
     return reg[0]
