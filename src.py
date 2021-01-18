@@ -41,15 +41,15 @@ def repeat(f, x, n: int):
     return x
 
 
-def a_star(start, target, h, neighbours_costs, admissible=True):
+def a_star(start, target, h, neighbours, equal_weights=True, **kwargs):
     """Generic A* pathfinding algorithm. Does not return a path, only the discovered path length.
 
     A binary heap (heapq) is used for the priority queue. f(n) = g(n) + h(n) is prioritised as always.
     In case of a tie, the node with the lowest heuristic h(n) is prioritised. Further ties are handled
     in reverse insertion order (Last In, First Out).
 
-    Different algorithms are used for admissible and non-admissible heuristics; the admissible case is
-    faster, but it breaks for improper heuristics.
+    Different algorithms are used for graphs with unit weights and diverse weights; the former is
+    faster, but it breaks for certain inadmissible heuristics. 
 
     Nodes are stored in sets, so they must be hashable.
 
@@ -57,9 +57,10 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
         start: The starting node.
         target: The target node.
         h: A function that returns the heuristic h(n) of a given node. Takes two arguments: (node, target)
-        neighbours_costs: A single-argument function that takes the current node, and yields tuples containing
-            each neighbouring node and its distance from the current node: (neighbour, cost)
-        admissible (optional): True if the heuristic is admissible (default), False otherwise. Must be set to
+        neighbours: A single-argument function that takes the current node and yields each neighbouring node.
+            If the graph weights are not equal, it must also yield the cost in a tuple: (neighbour, cost)
+            Any additional keyword arguments are passed to this function.
+        equal_weights (optional): True if all weights are equal (default), False otherwise. Must be set to
             False for non-admissible heuristics to prevent breakage.
 
     Returns:
@@ -73,17 +74,17 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
     # Priority queue: f(n) is prioritised, with ties broken first by h(n), then by last inserted.
     queue = [(guess, guess, entry_id, start, 0)]  # (f(n), h(n), entry, node, g(n))
 
-    if admissible:  # Faster, more breakable algorithm
+    if equal_weights:  # Faster, more breakable algorithm
         visited = {start}
 
         while queue:
             _f, _h, _id, node, g = heapq.heappop(queue)
-            for neigh, cost in neighbours_costs(node):
+            for neigh in neighbours(node, **kwargs):
                 if neigh == target:  # Return straight away when we touch the target node
-                    return g + cost
+                    return g + 1
                 if neigh not in visited:
                     entry_id -= 1  # Negative to ensure LIFO
-                    g_n = g + cost
+                    g_n = g + 1
                     h_n = h(neigh, target)
                     f_n = g_n + h_n  # Total path cost
                     heapq.heappush(queue, (f_n, h_n, entry_id, neigh, g_n))
@@ -98,7 +99,7 @@ def a_star(start, target, h, neighbours_costs, admissible=True):
                 return g
             if node not in visited:
                 visited.add(node)  # Without an admissible h(n) we have to mark the current node as visited
-                for neigh, cost in neighbours_costs(node):
+                for neigh, cost in neighbours(node, **kwargs):
                     if neigh not in visited:
                         entry_id -= 1  # Negative to ensure LIFO
                         g_n = g + cost

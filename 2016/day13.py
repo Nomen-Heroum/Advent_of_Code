@@ -22,7 +22,7 @@ def neighbours(node, number=NUMBER):
               (x0, y0 + 1))
     for new in neighs:
         if is_open(*new):
-            yield new, 1
+            yield new
 
 
 def heuristic(node, target):
@@ -36,7 +36,7 @@ def count_reach(start, steps):
     for _step in range(steps):
         new = set()
         for node in to_visit:
-            for neigh, _cost in neighbours(node):
+            for neigh in neighbours(node):
                 if neigh not in visited:
                     visited.add(neigh)
                     new.add(neigh)

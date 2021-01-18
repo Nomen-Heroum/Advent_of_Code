@@ -2,13 +2,12 @@ import src
 
 STRINGS = src.read()
 SET_VALUE = int(STRINGS[8].split()[1])
-MULTIPLICAND = int(STRINGS[12].split()[2])
 
 
 def calculate_registers(reg_3=65536, reg_4=SET_VALUE):
     while reg_3:
         reg_3, remainder = divmod(reg_3, 256)
-        reg_4 = ((reg_4 + remainder) * MULTIPLICAND) % 16777216  # 2^24
+        reg_4 = ((reg_4 + remainder) * 65899) % 16777216  # 2^24
     return reg_3, reg_4
 
 

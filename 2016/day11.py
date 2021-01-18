@@ -36,12 +36,12 @@ def neighbours(node):
     for new in new_floors:  # For all possible directions
         for num, single_move in move(objects):
             if is_valid(single_move):
-                yield (single_move, new), 1  # Move one object
+                yield single_move, new  # Move one object
 
             for _, second_move in move(objects[num + 1:]):
                 two_moves = single_move[:num + 1] + second_move
                 if is_valid(two_moves):
-                    yield (two_moves, new), 1  # Move two objects
+                    yield two_moves, new  # Move two objects
 
 
 def heuristic(node, _target):
