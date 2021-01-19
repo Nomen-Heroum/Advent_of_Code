@@ -1,7 +1,7 @@
 import src
 from copy import copy
 
-BANKS = [int(s) for s in src.read(split='\t')]
+BANKS = src.read('	', ints=True)split='\t')]
 
 
 def redistribute(banks):

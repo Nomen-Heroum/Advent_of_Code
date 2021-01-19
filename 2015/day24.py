@@ -2,7 +2,7 @@ import src
 import itertools
 import math
 
-WEIGHTS = [int(s) for s in src.read()]
+WEIGHTS = src.read(ints=True)
 
 
 def configure(weights: list, groups=3):

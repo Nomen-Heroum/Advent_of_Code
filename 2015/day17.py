@@ -1,7 +1,7 @@
 import src
 from itertools import chain, combinations
 
-VOLUMES = [int(s) for s in src.read()]
+VOLUMES = src.read(ints=True)
 POWER = chain.from_iterable(combinations(VOLUMES, r) for r in range(4, len(VOLUMES) + 1))
 
 

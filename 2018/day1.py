@@ -1,6 +1,6 @@
 import src
 
-DRIFTS = [int(n) for n in src.read()]
+DRIFTS = src.read(ints=True)
 
 
 def first_repetition(drifts):

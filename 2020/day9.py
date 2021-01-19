@@ -1,6 +1,6 @@
 import src
 
-NUMBERS = [int(s) for s in src.read()]
+NUMBERS = src.read(ints=True)
 PRE = 25
 
 

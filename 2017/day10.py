@@ -2,7 +2,7 @@ import src
 import functools
 import operator
 
-LENGTHS = [int(n) for n in src.read(',')]
+LENGTHS = src.read(',', ints=True)',')]
 STRING = src.read()[0]
 
 

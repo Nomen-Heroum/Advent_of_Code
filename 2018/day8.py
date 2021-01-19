@@ -1,7 +1,7 @@
 import src
 from collections import Counter
 
-NUMBERS = [int(n) for n in src.read(' ')]
+NUMBERS = src.read(' ', ints=True)' ')]
 
 
 def build_dict(numbers: list, _return_length=False):
