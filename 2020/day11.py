@@ -31,14 +31,10 @@ def next_seat(pos: tuple, xdir: int, ydir: int):
 
 def neighbouring_seats(x: int, y: int, grid: np.ndarray, seats: np.ndarray):
     pos = (x, y, grid, seats)
-    yield next_seat(pos, 0, -1)
-    yield next_seat(pos, 0, 1)
-    yield next_seat(pos, -1, 0)
-    yield next_seat(pos, 1, 0)
-    yield next_seat(pos, -1, -1)
-    yield next_seat(pos, -1, 1)
-    yield next_seat(pos, 1, -1)
-    yield next_seat(pos, 1, 1)
+    for dx in (-1, 0, 1):
+        for dy in (-1, 0, 1):
+            if (dx, dy) != (0, 0):
+                yield next_seat(pos, dx, dy)
 
 
 def next_value(x: int, y: int, grid: np.ndarray, seats: np.ndarray, version=1):
