@@ -1,6 +1,7 @@
 """
 This file contains general use functions for all exercises.
 """
+from copy import copy
 import heapq
 import inspect
 import os
@@ -22,7 +23,7 @@ def read(split='\n', ints=False):
         return strings
 
 
-def copy(text):
+def clip(text):
     """Outputs text to the system clipboard as a string."""
     string = str(text)
     with os.popen('xclip -selection c', 'w') as out:
@@ -242,3 +243,66 @@ class Player(FuncAnimation):
     def update(self, i):
         self.slider.set_val(i)
         return self.artists
+
+
+class IntCodeCPU:
+    """Computer that executes IntCode. References dictionaries for operatons and parameter modes."""
+    def __init__(self):
+        self.opcode_dict = {  # For each opcode: (instruction pointer jump, operation)
+            1: lambda op: self.write(next(op) + next(op)),  # Add
+            2: lambda op: self.write(next(op) * next(op)),  # Multiply
+            3: lambda op: self.write(self.input),  # Input
+            4: lambda op: self.output.append(next(op)),  # Output
+            5: lambda op: self.jump(next(op)) if next(op) else next(op),  # Jump if true
+            6: lambda op: next(op) if next(op) else self.jump(next(op)),  # Jump if false
+            7: lambda op: self.write(1 if next(op) < next(op) else 0),  # Less than
+            8: lambda op: self.write(1 if next(op) == next(op) else 0),  # Equals
+            99: lambda _op: self.halt()  # Halt
+        }
+
+        self.mode_dict = {  # Parameter modes
+            0: lambda i: self.code[i],
+            1: lambda i: i
+        }
+
+        self.code = self.input = None
+        self.output = []
+        self.pointer = 0
+        self.running = False
+
+    def execute(self, intcode, user_input=None):
+        """Main wrapper for execution of the IntCode."""
+        if isinstance(intcode, str):
+            self.code = [int(n) for n in intcode.split(',')]
+        else:
+            self.code = copy(intcode)
+        self.input = user_input
+        self.output = []
+        self.pointer = 0
+        self.running = True
+        while self.running:
+            value = self.code[self.pointer]
+            modes, opcode = divmod(value, 100)  # Separate the opcode from the operation modes
+            operate = self.opcode_dict[opcode]
+            operate(self.operands(modes))
+            self.pointer += 1
+        return self.output
+
+    def operands(self, modes):
+        """Yields the values that the instructions operate on, using the correct modes."""
+        while True:
+            self.pointer += 1
+            modes, mode = divmod(modes, 10)
+            yield self.mode_dict[mode](self.code[self.pointer])
+
+    def write(self, val):
+        """Writes val to the position given in the last parameter."""
+        self.pointer += 1
+        self.code[self.code[self.pointer]] = val
+
+    def jump(self, val):
+        """Used by jump instructions"""
+        self.pointer = val - 1
+
+    def halt(self):
+        self.running = False
