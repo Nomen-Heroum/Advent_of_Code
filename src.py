@@ -1,6 +1,8 @@
 """
 This file contains general use functions for all exercises.
 """
+from collections import deque
+from collections.abc import Iterable
 from copy import copy
 import heapq
 import inspect
@@ -124,11 +126,11 @@ def orientations(tile: np.ndarray):
 
 class IntCodeCPU:
     """Computer that executes IntCode. References dictionaries for operatons and parameter modes."""
-    def __init__(self):
+    def __init__(self, intcode=None, user_input=None):
         self.opcode_dict = {  # For each opcode: (instruction pointer jump, operation)
             1: lambda op: self.write(next(op) + next(op)),  # Add
             2: lambda op: self.write(next(op) * next(op)),  # Multiply
-            3: lambda op: self.write(self.input),  # Input
+            3: lambda op: self.write(self.input.popleft()) if self.input else self.wait(),  # Input
             4: lambda op: self.output.append(next(op)),  # Output
             5: lambda op: self.jump(next(op)) if next(op) else next(op),  # Jump if true
             6: lambda op: next(op) if next(op) else self.jump(next(op)),  # Jump if false
@@ -142,22 +144,31 @@ class IntCodeCPU:
             1: lambda i: i
         }
 
-        self.code = self.input = None
-        self.output = []
-        self.pointer = 0
-        self.running = False
-
-    def execute(self, intcode, user_input=None):
-        """Main wrapper for execution of the IntCode."""
-        if isinstance(intcode, str):
-            self.code = [int(n) for n in intcode.split(',')]
+        if intcode:
+            self.code = [int(n) for n in intcode.split(',')] if isinstance(intcode, str) else list(intcode)
         else:
-            self.code = copy(intcode)
-        self.input = user_input
+            self.code = None
+        if user_input is not None:
+            self.input = deque(user_input) if isinstance(user_input, Iterable) else deque([user_input])
+        else:
+            self.input = deque([])
         self.output = []
         self.pointer = 0
         self.running = True
-        while self.running:
+        self.waiting = False  # Waiting for input to come in
+
+    def execute(self, intcode=None, user_input=None):
+        """Main wrapper for execution of the IntCode."""
+        if not self.running or intcode:  # Reset the program
+            if intcode:
+                self.code = [int(n) for n in intcode.split(',')] if isinstance(intcode, str) else list(intcode)
+            if user_input is not None:
+                self.input = deque(user_input) if isinstance(user_input, Iterable) else deque([user_input])
+            self.output = []
+            self.pointer = 0
+            self.running = True
+        self.waiting = False
+        while self.running and not self.waiting:
             value = self.code[self.pointer]
             modes, opcode = divmod(value, 100)  # Separate the opcode from the operation modes
             operate = self.opcode_dict[opcode]
@@ -180,6 +191,11 @@ class IntCodeCPU:
     def jump(self, val):
         """Used by jump instructions"""
         self.pointer = val - 1
+
+    def wait(self):
+        """Wait for new input to come in."""
+        self.pointer -= 1  # Make sure the pointer stays on the input instruction
+        self.waiting = True
 
     def halt(self):
         self.running = False
