@@ -38,7 +38,7 @@ def main(players=PLAYERS):
     print("\nPart Two:")
     ans2 = calculate_score(*play_combat(deepcopy(players), recursive=True))
     print(f"The winner of Recursive Combat had {ans2} points.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

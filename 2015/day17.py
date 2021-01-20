@@ -21,7 +21,7 @@ def main():
     print("\nPart Two:")
     nice_ways, n = efficient_ways(VOLUMES)
     print(f"There are {nice_ways} ways to fit the eggnog in {n} bins.")
-    src.copy(nice_ways)
+    src.clip(nice_ways)
 
 
 if __name__ == '__main__':

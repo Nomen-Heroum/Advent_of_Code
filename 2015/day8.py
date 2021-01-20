@@ -30,7 +30,7 @@ def main():
     print(f"Code characters: {TOTAL_CHARS}.\n"
           f"Representation characters: {rep_chars}.\n"
           f"Difference: {diff2}.")
-    src.copy(diff2)
+    src.clip(diff2)
 
 
 if __name__ == '__main__':

@@ -46,7 +46,7 @@ def main(instructions=None):
 
     print("\nPart Two:")
     print(f"The product of chip values in outputs 0-2 is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

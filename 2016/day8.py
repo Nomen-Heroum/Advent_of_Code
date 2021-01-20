@@ -24,7 +24,7 @@ def main(instructions=INSTRUCTIONS, screen=SCREEN):
     print("Part One:")
     ans1 = follow(instructions, screen)
     print(f"{ans1} lights are on after following the instructions.")
-    src.copy(ans1)
+    src.clip(ans1)
 
     print("\nPart Two:")
     print(f"Plotted the code on the display.")

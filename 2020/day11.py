@@ -73,7 +73,7 @@ def main(grid=ARRAY, seats=SEATS):
     print("\nPart Two:")
     final_2 = iterate(grid, seats, version=2).sum()
     print(f"{final_2} seats are occupied in this version.")
-    src.copy(final_2)
+    src.clip(final_2)
 
 
 if __name__ == '__main__':

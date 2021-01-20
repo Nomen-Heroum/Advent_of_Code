@@ -57,7 +57,7 @@ def main(instr=instructions, part=1):
                 continue
             wires[out] = apply(input_list)
     print(f"Final value of wire a is {wires['a']}.")
-    src.copy(wires['a'])
+    src.clip(wires['a'])
 
 
 if __name__ == '__main__':

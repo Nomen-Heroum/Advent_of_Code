@@ -78,7 +78,7 @@ def main(boss=None, player=None):
 
     ans2 = fight(boss, player, version=2)
     print(f"On hard mode, you have to spend at least {ans2} mana.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

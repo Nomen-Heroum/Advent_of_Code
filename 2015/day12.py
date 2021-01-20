@@ -32,7 +32,7 @@ def main(string=STRING):
     structure = json.loads(string)
     no_red = sum_red(structure)
     print(f"Total of red-free numbers: {no_red}")
-    src.copy(no_red)
+    src.clip(no_red)
 
 
 if __name__ == '__main__':

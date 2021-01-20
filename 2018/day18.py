@@ -38,7 +38,7 @@ def main(area=AREA):
     print("\nPart Two:")
     ans2 = iterate(area.copy(), 1000_000_000)  # 210824
     print(f"The resource value after 1,000,000,000 minutes is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

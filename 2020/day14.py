@@ -41,7 +41,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     ans2 = initialize(strings, 2)
     print(f"The sum is {ans2} for version 2.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -21,4 +21,4 @@ def count_floors(string=STRING):
     return floor, first_basement
 
 
-src.copy(count_floors())
+src.clip(count_floors())

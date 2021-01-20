@@ -75,7 +75,7 @@ def main():
     print("\nPart Two:")
     ans2 = find_longest(START, TARGET, neighbours)
     print(f"The longest path has length {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

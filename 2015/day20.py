@@ -27,7 +27,7 @@ def main(presents=PRESENTS):
     print("\nPart Two:")
     first2 = first_house2(presents)
     print(f"The first house to get {presents} presents is {first2}.")
-    src.copy(first2)
+    src.clip(first2)
 
 
 if __name__ == '__main__':

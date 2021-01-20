@@ -45,7 +45,7 @@ def total_houses_2(string=STRING):
     return len(total_round)
 
 
-src.copy(total_houses())
+src.clip(total_houses())
 
 print("\nPart Two:")
-src.copy(total_houses_2())
+src.clip(total_houses_2())

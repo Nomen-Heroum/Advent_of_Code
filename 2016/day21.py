@@ -85,7 +85,7 @@ def main(password=PASSWORD, strings=STRINGS, password_2=PASSWORD_2):
     print("\nPart Two:")
     ans2 = unscramble(password_2, strings)  # dhaegfbc
     print(f"The unscrambled version of fbgdceah is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

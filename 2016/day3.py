@@ -25,7 +25,7 @@ def main(numbers=None):
     print("\nPart Two:")
     ans2 = count_triangles(numbers, version=2)
     print(f"Vertically, there are {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

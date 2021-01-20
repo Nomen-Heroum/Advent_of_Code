@@ -53,7 +53,7 @@ def main():
     print("\nPart Two:")
     ans2 = count_reach(START, 50)
     print(f"I can reach {ans2} locations in 50 steps.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

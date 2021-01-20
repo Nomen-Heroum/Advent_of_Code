@@ -33,7 +33,7 @@ def main(elves=ELVES):
     print("\nPart Two:")
     ans2 = lucky_elf(elves, 2)
     print(f"The lucky elf is now Elf {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

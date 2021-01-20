@@ -43,7 +43,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     end_value = find_fix(strings)
     print(f"The program finishes successfully with acc={end_value}.")
-    src.copy(end_value)
+    src.clip(end_value)
 
 
 if __name__ == '__main__':

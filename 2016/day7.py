@@ -37,7 +37,7 @@ def main(ips=IPS):
     print("\nPart Two:")
     ans2 = count_ssl(ips)
     print(f"{ans2} IPs support SSL.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

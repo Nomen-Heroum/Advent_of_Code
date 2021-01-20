@@ -57,7 +57,7 @@ def main(strings=None):
 
     print("\nPart Two:")
     print(f"After the last collision, the last cart is at {ans2}.")  # 106,22 is wrong
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

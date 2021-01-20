@@ -27,7 +27,7 @@ def main(numbers=None):
     print("\nPart Two:")
     ans2 = play(numbers, 30_000_000)  # 59006
     print(f"The 30,000,000th number spoken is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

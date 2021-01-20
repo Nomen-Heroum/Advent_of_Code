@@ -98,7 +98,7 @@ def main(strings=STRINGS):
         elf_attack += 1
         ans2 = battle(*deepcopy(args), elf_attack=elf_attack, version=2)
     print(f"The elves need an attack power of {elf_attack}; the outcome is {ans2}.")  # 69867
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -17,7 +17,7 @@ def main(string=STRING):
     print("\nPart Two:")
     ans2 = solve_captcha(string, version=2)  # 1132
     print(f"The solution to the second captcha is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

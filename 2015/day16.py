@@ -52,7 +52,7 @@ def main():
     print("\nPart Two:")
     sue2 = find_sue(MFCSAM2)
     print(f"The REAL Sue is Sue {sue2}.")
-    src.copy(sue2)
+    src.clip(sue2)
 
 
 if __name__ == '__main__':

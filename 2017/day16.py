@@ -48,7 +48,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     ans2 = multiple_dances(mask, positions, 1000_000_000)  # ajcdefghpkblmion
     print(f"After a billion dances, the order is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

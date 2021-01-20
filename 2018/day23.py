@@ -68,7 +68,7 @@ def main(string=STRING):
     print("\nPart Two:")
     ans2 = find_coordinate(nanobots)  # 142473501
     print(f"The shortest Manhattan distance with maximum coverage is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

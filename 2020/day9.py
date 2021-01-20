@@ -35,7 +35,7 @@ def main(numbers=None, pre=PRE):
     print("\nPart Two:")
     key = adds_to(first, numbers)
     print(f"The encryption weakness is {key}.")
-    src.copy(key)
+    src.clip(key)
 
 
 if __name__ == '__main__':

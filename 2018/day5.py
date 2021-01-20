@@ -34,7 +34,7 @@ def main(polymer=POLYMER):
     print("\nPart Two:")
     ans2 = find_problem(polymer)
     print(f"The shortest possible polymer has length {ans2}.")  # 6918
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -39,7 +39,7 @@ def main():
     print("\nPart Two:")
     ans2 = iterate(PLANTS, PATTERNS, 50_000_000_000)  # 3250000000956
     print(f"after 50,000,000,000 generations, the sum is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -17,7 +17,7 @@ def main(sequence=SEQUENCE, iterations=40):
         sequence = generate_next(sequence)
     length = len(sequence)
     print(f"The final sequence has length {length}.")
-    src.copy(length)
+    src.clip(length)
 
 
 if __name__ == '__main__':

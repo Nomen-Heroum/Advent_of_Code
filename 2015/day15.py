@@ -39,7 +39,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     best = high_score(500)
     print(f"The highest score with 500 calories is {best}.")
-    src.copy(best)
+    src.clip(best)
 
 
 if __name__ == '__main__':

@@ -26,7 +26,7 @@ def main(firewall=None):
     print("\nPart Two:")
     ans2 = minimum_delay(firewall)  # 3933124
     print(f"The minimum delay to stay undetected is {ans2} picoseconds.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

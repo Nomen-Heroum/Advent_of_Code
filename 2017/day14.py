@@ -63,7 +63,7 @@ def main(key=KEY):
     print("\nPart Two:")
     ans2 = find_regions(grid)  # 1113
     print(f"There are {ans2} regions in the grid.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

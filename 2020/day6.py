@@ -17,12 +17,12 @@ def main(groups=GROUPS):
     print("Part One:")
     total = sum(any_count(g) for g in groups)
     print(f"Total questions answered yes is {total}.")
-    src.copy(total)
+    src.clip(total)
 
     print("\nPart Two:")
     total2 = sum(all_count(g) for g in groups)
     print(f"Total questions answered yes is {total2}.")
-    src.copy(total2)
+    src.clip(total2)
 
 
 if __name__ == '__main__':

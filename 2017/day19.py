@@ -40,7 +40,7 @@ def main(pipe=None, start=START):
 
     print("\nPart Two:")
     print(f"The packet needs to go {ans2} steps.")  # 17228
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

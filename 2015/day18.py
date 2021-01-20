@@ -42,7 +42,7 @@ def main():
     print("\nPart Two:")
     final_on2 = iterate(100, version=2).sum()
     print(f"{final_on2} lights are on in this version.")
-    src.copy(final_on2)
+    src.clip(final_on2)
 
 
 if __name__ == '__main__':

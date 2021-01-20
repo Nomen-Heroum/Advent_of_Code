@@ -32,7 +32,7 @@ def main():
     print("\nPart Two:")
     ans2 = find_highest()  # 936387
     print(f"The program takes longest to halt with {ans2} in register 0.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

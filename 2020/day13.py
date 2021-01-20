@@ -41,7 +41,7 @@ def main(earliest=EARLIEST, ids=None, ids_indices=None):
     print("\nPart Two:")
     ans_2 = ans2(ids_indices)
     print(f"The second answer is {ans_2}!")
-    src.copy(ans_2)
+    src.clip(ans_2)
 
 
 if __name__ == '__main__':

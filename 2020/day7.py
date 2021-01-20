@@ -45,12 +45,12 @@ def main():
     print("Part One:")
     fits = fits_in()
     print(f"There are {fits} bags your shiny gold bag can go in.")
-    src.copy(fits)
+    src.clip(fits)
 
     print("\nPart Two:")
     has = has_in()
     print(f"There are {has} bags in your golden bag.")
-    src.copy(has)
+    src.clip(has)
 
 
 if __name__ == '__main__':

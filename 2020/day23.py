@@ -53,7 +53,7 @@ def main(cups=None):
     star2 = neighs2[star1]
     ans2 = star1 * star2
     print(f"My stars are hidden under two cups with product {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

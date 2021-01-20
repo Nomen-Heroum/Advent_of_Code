@@ -61,7 +61,7 @@ def main(string=STRING):
     print("\nPart Two:")
     ans2 = correct_weight(string, ans1)  # 646
     print(f"The faulty weight should be {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

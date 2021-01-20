@@ -27,7 +27,7 @@ def main(blueprints=BLUEPRINTS):
     print("Part One:")
     ans1 = build_turing_machine(blueprints)  # 4225
     print(f"The diagnostic checksum is {ans1}.")
-    src.copy(ans1)
+    src.clip(ans1)
 
 
 if __name__ == '__main__':

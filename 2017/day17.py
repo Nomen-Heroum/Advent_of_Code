@@ -30,7 +30,7 @@ def main(step_size=STEP_SIZE):
     print("\nPart Two:")
     ans2 = after_zero(step_size)  # 27650600
     print(f"After 50,000,000 is inserted, the value after 0 is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -14,5 +14,5 @@ def find_hash(key=string, n=5):
             return i
 
 
-src.copy(find_hash())
-src.copy(find_hash(n=6))
+src.clip(find_hash())
+src.clip(find_hash(n=6))

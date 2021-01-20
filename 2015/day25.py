@@ -14,7 +14,7 @@ def main(position=POSITION):
     ans1 = get_code(position)
     print(f"The code is {ans1}.")
 
-    src.copy(ans1)
+    src.clip(ans1)
 
 
 if __name__ == '__main__':

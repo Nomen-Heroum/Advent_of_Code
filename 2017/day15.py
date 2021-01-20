@@ -45,7 +45,7 @@ def main(a_start=A_START, b_start=B_START):
     print("\nPart Two:")
     ans2 = count_matches_2(a_start, b_start, 5_000_000)  # 328
     print(f"The count is now {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

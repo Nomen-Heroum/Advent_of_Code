@@ -34,7 +34,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     longest = max(lengths)
     print(f"Longest trip has length {longest}.")
-    src.copy(longest)
+    src.clip(longest)
 
 
 if __name__ == '__main__':

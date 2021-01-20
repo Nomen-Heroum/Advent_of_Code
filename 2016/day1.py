@@ -28,7 +28,7 @@ def main(instructions=INSTRUCTIONS):
     print("\nPart Two:")
     ans2 = find_distance(instructions, version=2)
     print(f"The first location visited twice is {ans2} blocks away.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

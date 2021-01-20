@@ -50,7 +50,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     ans2 = iterate(strings, 6, 4)
     print(f"In the four dimensional case the end number is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

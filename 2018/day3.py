@@ -29,7 +29,7 @@ def main(strings=STRINGS):
 
     print("\nPart Two:")
     print(f"The only non-overlapping claim is #{ans2}.")  # 1260
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

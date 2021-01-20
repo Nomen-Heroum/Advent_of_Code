@@ -64,7 +64,7 @@ def main():
     print("\nPart Two:")
     print(f"The most gold you can spend on losing is {expensive}.")
 
-    src.copy(expensive)
+    src.clip(expensive)
 
 
 if __name__ == '__main__':

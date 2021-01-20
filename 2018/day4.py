@@ -33,7 +33,7 @@ def main(strings=None):
 
     print("\nPart Two:")
     print(f"For the other method, it is {ans2}.")  # 117061
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

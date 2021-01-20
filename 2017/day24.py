@@ -97,7 +97,7 @@ def main():
 
     print("\nPart Two:")
     print(f"The strongest longest possible bridge has strength {ans2}.")  # 1928
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -22,7 +22,7 @@ def main(strings=STRINGS):
     for seat in seat_range:
         if seat not in ids:
             print(f"My seat number is {seat}!")
-            src.copy(seat)
+            src.clip(seat)
 
 
 if __name__ == '__main__':

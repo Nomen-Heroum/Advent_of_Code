@@ -95,7 +95,7 @@ def main(nodes=None):
     print("\nPart Two:")
     ans2 = a_star((EMPTY, GOAL), heuristic, neighbours)  # 261
     print(f"The fewest number of steps required is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

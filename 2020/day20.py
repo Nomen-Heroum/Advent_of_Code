@@ -130,7 +130,7 @@ def main():
     picture = build_image(TILES, EDGES)
     ans2 = roughness(picture)  # 1714
     print(f"The roughness of water in this image is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -87,7 +87,7 @@ def main(target=TARGET, depth=DEPTH):
     ans2 = src.a_star((0, 0, 'torch'), (*target, 'torch'), heuristic, neighbours_costs, equal_weights=False,
                       risk=risk, area=area, depth=depth)  # 944
     print(f"The fastest I can reach the target is {ans2} minutes.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -58,7 +58,7 @@ def main(points=None):
 
     print("\nPart Two:")
     print(f"The size of the region is {ans2}.")  # 42535
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

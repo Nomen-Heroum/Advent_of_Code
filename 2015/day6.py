@@ -55,7 +55,7 @@ def total_lights(strings=STRINGS, grid=np.zeros((1000, 1000))):
     return total
 
 
-src.copy(count_lights())
+src.clip(count_lights())
 
 print("\nPart Two:")
-src.copy(total_lights())
+src.clip(total_lights())

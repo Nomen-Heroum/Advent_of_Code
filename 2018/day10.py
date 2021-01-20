@@ -48,7 +48,7 @@ def main():
 
     print("\nPart Two:")
     print(f"The message would have appeared after {ans2} seconds.")  # 10813
-    src.copy(ans2)
+    src.clip(ans2)
 
     print("\nBonus:")
     print(f"Animating the points of light around {ans2} seconds...")

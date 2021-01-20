@@ -40,7 +40,7 @@ def main(door_id=DOOR_ID):
     print("\nPart Two:")
     ans2 = find_password(door_id, version=2)
     print(f"The second password is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

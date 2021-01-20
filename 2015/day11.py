@@ -42,7 +42,7 @@ def main(password=PASSWORD):
     print("\nPart Two:")
     next_pw = find(iterate(final))
     print(f"Santa's next password is {next_pw}.")
-    src.copy(next_pw)
+    src.clip(next_pw)
 
 
 if __name__ == '__main__':

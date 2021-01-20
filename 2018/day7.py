@@ -58,7 +58,7 @@ def main(string=STRING):
     print("\nPart Two:")
     ans2 = assemble_sleigh_together(deepcopy(requirements))  # 982
     print(f"With 5 workers, it takes {ans2} seconds to finish the sleigh.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

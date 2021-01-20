@@ -42,7 +42,7 @@ def main(regex=REGEX):
 
     print("\nPart Two:")
     print(f"There are {ans2} rooms that have me go through at least 1000 doors.")  # 8528
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

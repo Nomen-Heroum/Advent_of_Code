@@ -36,7 +36,7 @@ def main(strings=STRINGS, end_time=END_TIME):
         scores += winners
     winning_score = int(np.max(scores))
     print(f"The highest score after {end_time}s is {winning_score}.")
-    src.copy(winning_score)
+    src.clip(winning_score)
 
 
 if __name__ == '__main__':

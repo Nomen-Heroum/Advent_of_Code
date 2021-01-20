@@ -71,7 +71,7 @@ def main():
 
     print("\nPart Two:")
     print(f"If the robot has to come back, the fewest number of steps is {ans2}.")  # 664
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

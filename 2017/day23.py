@@ -52,7 +52,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     ans2 = run(strings, debug=False)  # 915
     print(f"Register h would end up containing {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

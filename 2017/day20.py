@@ -43,7 +43,7 @@ def main(particles=None):
     print("\nPart Two:")
     ans2 = collide(particles)  # 404
     print(f"After all collisions, there are {ans2} particles left.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

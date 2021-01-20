@@ -45,7 +45,7 @@ def main(serial_number=SERIAL_NUMBER):
 
     print("\nPart Two:")
     print(f"The best size coordinate is {ans2}.")  # 234,272,18
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

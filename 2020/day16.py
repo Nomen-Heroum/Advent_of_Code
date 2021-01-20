@@ -80,7 +80,7 @@ def main(info=INFO):
     print("\nPart Two:")
     ans2 = departure_product(info, valid_tickets)
     print(f"The product of my departure numbers is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

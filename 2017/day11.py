@@ -30,7 +30,7 @@ def main(path=PATH):
 
     print("\nPart Two:")
     print(f"The furthest the child process got was {ans2} steps away.")  # 1532
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

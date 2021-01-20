@@ -58,7 +58,7 @@ def main():
     print("\nPart Two:")
     ans2 = src.a_star(START_2, TARGET_2, heuristic, neighbours)
     print(f"With the extra objects, the minimum is {ans2} steps.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -60,7 +60,7 @@ def main(start=None):
     print("\nPart Two:")
     ans2 = count_infections_evolved(start)  # 2511090
     print(f"Out of 10,000,000 evolved bursts, {ans2} cause an infection.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

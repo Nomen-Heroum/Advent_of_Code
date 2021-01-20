@@ -89,7 +89,7 @@ def main(armies=ARMIES):
         boost += 1
         ans2, immune_wins = battle(armies, boost=boost)  # 3467
     print(f"With just enough boost, {ans2} units are left in the immune system.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -29,7 +29,7 @@ def main(numbers=None):
     print("\nPart Two:")
     ans2 = sum_divisions(numbers)  # 16
     print(f"The sum of each even division is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

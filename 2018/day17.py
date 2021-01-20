@@ -57,7 +57,7 @@ def main(strings=STRINGS):
 
     print("\nPart Two:")
     print(f"After the water drains, there are {ans2} tiles of water left.")  # 29293
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

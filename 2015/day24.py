@@ -24,7 +24,7 @@ def main(weights=None):
     print("\nPart Two:")
     ans2 = configure(weights, groups=4)
     print(f"The best QE is now {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

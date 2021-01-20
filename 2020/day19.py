@@ -39,7 +39,7 @@ def main(rules=RULES, messages=MESSAGES):
     print("\nPart Two:")
     ans2 = count_matches(rules, messages, version=2)
     print(f"There are now {ans2} valid messages.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

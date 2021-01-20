@@ -30,7 +30,7 @@ def main(box_ids=BOX_IDS):
     print("\nPart Two:")
     ans2 = common_letters(box_ids)  # uqyoeizfvmbistpkgnocjtwld
     print(f"The common letters between the two correct IDs are {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

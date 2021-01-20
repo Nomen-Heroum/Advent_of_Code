@@ -33,7 +33,7 @@ def main(square=SQUARE):
     print("\nPart Two:")
     ans2 = build_grid(square)  # 312453
     print(f"The first value in the grid larger than {square} is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -44,7 +44,7 @@ def main(strings=STRINGS):
     table2 = [total_score(p, scores, version=2) for p in perms]
     best2 = max(table2)
     print(f"The best seating with me in it has a score of {best2}.")
-    src.copy(best2)
+    src.clip(best2)
 
 
 if __name__ == '__main__':

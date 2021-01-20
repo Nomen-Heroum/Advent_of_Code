@@ -28,8 +28,8 @@ def count_nice(strings=STRINGS, nice=is_nice):
     return nice_amount
 
 
-src.copy(count_nice())
-src.copy(count_nice(nice=is_nice2))
+src.clip(count_nice())
+src.clip(count_nice(nice=is_nice2))
 
 
 

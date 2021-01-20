@@ -29,4 +29,4 @@ def main(presents=strings):
     return total_paper, total_ribbons
 
 
-src.copy(main())
+src.clip(main())

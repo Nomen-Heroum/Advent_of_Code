@@ -33,7 +33,7 @@ def main(blacklist=None):
     print("\nPart Two:")
     ans2 = count_allowed(blacklist)
     print(f"{ans2} IPs are allowed by the blacklist.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

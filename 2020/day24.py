@@ -55,7 +55,7 @@ def main(strings=STRINGS, instructions=None):
     print("\nPart Two:")
     ans2 = iterate(flipped, instructions)
     print(f"{ans2} tiles are black after 100 days.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -45,7 +45,7 @@ def main(lengths=None, string=STRING):
     print("\nPart Two:")
     ans2 = knot(string, version=2)  # a9d0e68649d0174c8756a59ba21d4dc6
     print(f"The Knot Hash of my input is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

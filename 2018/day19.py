@@ -61,7 +61,7 @@ def main(instructions=None):
     print("\nPart Two:")
     ans2 = execute(instructions, version=2)  # 15844608
     print(f"The new process halts with value {ans2} in register 0.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

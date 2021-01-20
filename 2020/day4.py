@@ -33,7 +33,7 @@ def count_valid(strings=pp_strings, version=2):
     return count
 
 
-src.copy(count_valid(version=1))
+src.clip(count_valid(version=1))
 
 print("\nPart Two:")
-src.copy(count_valid())
+src.clip(count_valid())

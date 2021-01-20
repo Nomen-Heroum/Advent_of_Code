@@ -51,7 +51,7 @@ def main(numbers=None):
     print("\nPart Two:")
     ans2 = value(node_dict)  # 24820
     print(f"The value of the root node is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

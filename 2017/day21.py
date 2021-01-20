@@ -96,7 +96,7 @@ def main():
     print("\nPart Two:")
     ans2 = iterate(18)  # 1911767
     print(f"After 18 iterations, it's {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -42,7 +42,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     ans2 = total_sum(strings, evaluate_2)
     print(f"The sum of outcomes is now {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

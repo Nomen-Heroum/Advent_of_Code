@@ -25,7 +25,7 @@ def main(string=STRING):
     print("\nPart Two:")
     ans2 = count_safe(string, 400_000)
     print(f"There are {ans2} safe tiles.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

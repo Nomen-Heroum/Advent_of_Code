@@ -30,7 +30,7 @@ def main(banks=None):
 
     print("\nPart Two:")
     print(f"The infinite loop has {ans2} cycles.")  # 2793
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

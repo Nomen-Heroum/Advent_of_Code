@@ -89,7 +89,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     ans2 = run_parallel(strings)
     print(f"Program 1 sent a value {ans2} times.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

@@ -58,7 +58,7 @@ def main(strings=STRINGS):
     print("Part One:")
     ans1 = find_a(strings)  # 180
     print(f"The lowest value that works for register a is {ans1}.")
-    src.copy(ans1)
+    src.clip(ans1)
 
 
 if __name__ == '__main__':

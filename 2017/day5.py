@@ -27,7 +27,7 @@ def main(jumps=None):
     print("\nPart Two:")
     ans2 = count_steps(copy(jumps), version=2)  # 29717847
     print(f"It now takes {ans2} steps.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

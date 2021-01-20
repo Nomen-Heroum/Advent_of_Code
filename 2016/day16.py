@@ -29,7 +29,7 @@ def main(data=DATA):
     print("\nPart Two:")
     ans2 = find_checksum(data, 35651584)
     print(f"The second checksum is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

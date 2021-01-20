@@ -81,7 +81,7 @@ def main(samples=None, instructions=None):
     opcode_ids = reduce_options(options)
     ans2 = execute(instructions, opcode_ids)  # 472
     print(f"The final value in register 0 is {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

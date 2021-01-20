@@ -26,7 +26,7 @@ def main(stream=STREAM):
 
     print("\nPart Two:")
     print(f"There are {ans2} non-canceled characters within the garbage.")  # 5601
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

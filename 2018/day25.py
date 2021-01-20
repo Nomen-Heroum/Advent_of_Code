@@ -28,7 +28,7 @@ def main(points=None):
     print("Part One:")
     ans1 = count_constellations(points)  # 396
     print(f"There are {ans1} constellations in this data.")
-    src.copy(ans1)
+    src.clip(ans1)
 
 
 if __name__ == '__main__':

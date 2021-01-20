@@ -16,7 +16,7 @@ def main():
     print("\nPart Two:")
     ans2 = count_valid(SORTED)  # 231
     print(f"With the new policy there are {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

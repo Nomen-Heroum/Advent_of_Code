@@ -33,7 +33,7 @@ def main(strings=STRINGS):
 
     print("\nPart Two:")
     print(f"There are {ans2} groups.")  # 179
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

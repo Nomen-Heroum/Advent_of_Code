@@ -43,7 +43,7 @@ def main(dct=None, order=None, molecule=MOLECULE):
     print("\nPart Two:")
     medicine = depth_first_medicine(order, molecule)
     print(f"It takes at least {medicine} alterations to make the medicine.")
-    src.copy(medicine)
+    src.clip(medicine)
 
 
 if __name__ == '__main__':

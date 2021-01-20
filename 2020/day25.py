@@ -23,7 +23,7 @@ def main(public_key_1=PUBLIC_KEY_1, public_key_2=PUBLIC_KEY_2, modulus=MODULUS):
     ans1 = find_encryption_key(public_key_1, public_key_2, modulus)
     print(f"The encryption key is {ans1}.")
 
-    src.copy(ans1)
+    src.clip(ans1)
 
 
 if __name__ == '__main__':

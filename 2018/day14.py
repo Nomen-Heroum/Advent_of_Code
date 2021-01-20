@@ -41,7 +41,7 @@ def main(recipes=RECIPES):
 
     print("\nPart Two:")
     print(f"The sequence first appears after {ans2} recipes.")  # 20298300
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

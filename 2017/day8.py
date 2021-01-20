@@ -23,7 +23,7 @@ def main(strings=STRINGS):
 
     print("\nPart Two:")
     print(f"The largest value in any register ever is {ans2}.")  # 5035
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

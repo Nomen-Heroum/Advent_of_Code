@@ -41,7 +41,7 @@ def main(joltages=None):
     print("\nPart Two:")
     ans2 = part_two(joltages)
     print(f"There are {ans2} possible arrangements of chargers.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

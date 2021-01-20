@@ -36,7 +36,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     ans2 = find_code(strings, keys=KEYS2)
     print(f"It's actually {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':

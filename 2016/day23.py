@@ -70,7 +70,7 @@ def main(strings=STRINGS):
     print("\nPart Two:")
     ans2 = run(strings, version=2)  # 479010625
     print(f"The final value sent to the safe is now {ans2}.")
-    src.copy(ans2)
+    src.clip(ans2)
 
 
 if __name__ == '__main__':
