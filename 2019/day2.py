@@ -9,7 +9,7 @@ def main(intcode=INTCODE):
     intcode[1] = 12
     intcode[2] = 2
     cpu.execute(intcode)
-    ans1 = cpu.code[0]  # 2894520
+    ans1 = cpu.memory[0]  # 2894520
     print(f"After the program halts, position 0 has a value of {ans1}.")
 
     print("\nPart Two:")
@@ -19,7 +19,7 @@ def main(intcode=INTCODE):
             intcode[1] = noun
             intcode[2] = verb
             cpu.execute(intcode)
-            if cpu.code[0] == 1969_07_20:  # Date of the first moon landing!
+            if cpu.memory[0] == 1969_07_20:  # Date of the first moon landing!
                 ans2 = 100 * noun + verb  # 9342
                 break
     print(f"100 * noun + verb = {ans2}.")

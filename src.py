@@ -1,9 +1,8 @@
 """
 This file contains general use functions for all exercises.
 """
-from collections import deque
+from collections import defaultdict, deque
 from collections.abc import Iterable
-from copy import copy
 import heapq
 import inspect
 import os
@@ -127,33 +126,41 @@ def orientations(tile: np.ndarray):
 class IntCodeCPU:
     """Computer that executes IntCode. References dictionaries for operatons and parameter modes."""
     def __init__(self, intcode=None, user_input=None):
-        self.opcode_dict = {  # For each opcode: (instruction pointer jump, operation)
-            1: lambda op: self.write(next(op) + next(op)),  # Add
-            2: lambda op: self.write(next(op) * next(op)),  # Multiply
-            3: lambda op: self.write(self.input.popleft()) if self.input else self.wait(),  # Input
-            4: lambda op: self.output.append(next(op)),  # Output
-            5: lambda op: self.jump(next(op)) if next(op) else next(op),  # Jump if true
-            6: lambda op: next(op) if next(op) else self.jump(next(op)),  # Jump if false
-            7: lambda op: self.write(1 if next(op) < next(op) else 0),  # Less than
-            8: lambda op: self.write(1 if next(op) == next(op) else 0),  # Equals
+        def val(generator):
+            """Get the value from the parameter generator."""
+            return next(generator)[0]
+
+        self.opcode_dict = {  # Operations. next(op)[0] gives the next index, next(op)[1] the next value.
+            1: lambda op: self.write(val(op) + val(op), op),  # Add
+            2: lambda op: self.write(val(op) * val(op), op),  # Multiply
+            3: lambda op: self.write(self.input.popleft(), op) if self.input else self.wait(),  # Input
+            4: lambda op: self.output.append(val(op)),  # Output
+            5: lambda op: self.jump(val(op)) if val(op) else val(op),  # Jump if true
+            6: lambda op: val(op) if val(op) else self.jump(val(op)),  # Jump if false
+            7: lambda op: self.write(1 if val(op) < val(op) else 0, op),  # Less than
+            8: lambda op: self.write(1 if val(op) == val(op) else 0, op),  # Equals
+            9: lambda op: self.offset(val(op)),  # Relative base offset
             99: lambda _op: self.halt()  # Halt
         }
 
-        self.mode_dict = {  # Parameter modes
-            0: lambda i: self.code[i],
-            1: lambda i: i
+        self.mode_dict = {  # Parameter modes, operate on indices
+            0: lambda i: self.memory[i],  # Position
+            1: lambda i: i,  # Immediate
+            2: lambda i: self.base + self.memory[i]  # Relative
         }
 
         if intcode:
             self.code = [int(n) for n in intcode.split(',')] if isinstance(intcode, str) else list(intcode)
+            self.memory = defaultdict(int, enumerate(self.code))
         else:
-            self.code = None
+            self.code = self.memory = None
         if user_input is not None:
             self.input = deque(user_input) if isinstance(user_input, Iterable) else deque([user_input])
         else:
             self.input = deque([])
         self.output = []
         self.pointer = 0
+        self.base = 0
         self.running = True
         self.waiting = False  # Waiting for input to come in
 
@@ -162,14 +169,18 @@ class IntCodeCPU:
         if not self.running or intcode:  # Reset the program
             if intcode:
                 self.code = [int(n) for n in intcode.split(',')] if isinstance(intcode, str) else list(intcode)
+            self.memory = defaultdict(int, enumerate(self.code))
             if user_input is not None:
                 self.input = deque(user_input) if isinstance(user_input, Iterable) else deque([user_input])
             self.output = []
             self.pointer = 0
+            self.base = 0
             self.running = True
+
+        # Execution loop
         self.waiting = False
         while self.running and not self.waiting:
-            value = self.code[self.pointer]
+            value = self.memory[self.pointer]
             modes, opcode = divmod(value, 100)  # Separate the opcode from the operation modes
             operate = self.opcode_dict[opcode]
             operate(self.operands(modes))
@@ -177,16 +188,18 @@ class IntCodeCPU:
         return self.output
 
     def operands(self, modes):
-        """Yields the values that the instructions operate on, using the correct modes."""
+        """Generator for the parameters that the instructions operate on, using the correct modes.
+        For each parameter, yields a tuple with the next value and its index."""
         while True:
             self.pointer += 1
             modes, mode = divmod(modes, 10)
-            yield self.mode_dict[mode](self.code[self.pointer])
+            index = self.mode_dict[mode](self.pointer)
+            yield self.memory[index], index
 
-    def write(self, val):
-        """Writes val to the position given in the last parameter."""
-        self.pointer += 1
-        self.code[self.code[self.pointer]] = val
+    def write(self, val, generator):
+        """Writes val to memory at position provided by the generator"""
+        index = next(generator)[1]
+        self.memory[index] = val
 
     def jump(self, val):
         """Used by jump instructions"""
@@ -196,6 +209,10 @@ class IntCodeCPU:
         """Wait for new input to come in."""
         self.pointer -= 1  # Make sure the pointer stays on the input instruction
         self.waiting = True
+
+    def offset(self, val):
+        """Changes the relative base."""
+        self.base += val
 
     def halt(self):
         self.running = False
