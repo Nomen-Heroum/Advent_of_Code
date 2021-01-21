@@ -5,22 +5,22 @@ STRINGS = src.read()
 PATTERN = parse.compile('{}{:d}')
 INSTRUCTIONS = [PATTERN.parse(s).fixed for s in STRINGS]
 DICT = {
-    'N': lambda z, rot, num: (z + num*1j, rot),
-    'S': lambda z, rot, num: (z - num*1j, rot),
-    'E': lambda z, rot, num: (z + num, rot),
-    'W': lambda z, rot, num: (z - num, rot),
-    'L': lambda z, rot, num: (z, rot * 1j**(num/90)),
-    'R': lambda z, rot, num: (z, rot * (-1j)**(num/90)),
-    'F': lambda z, rot, num: (z + rot * num, rot)
+    'N': lambda z, rot, n: (z + n*1j, rot),
+    'S': lambda z, rot, n: (z - n*1j, rot),
+    'E': lambda z, rot, n: (z + n, rot),
+    'W': lambda z, rot, n: (z - n, rot),
+    'L': lambda z, rot, n: (z, rot * 1j**(n/90)),
+    'R': lambda z, rot, n: (z, rot * (-1j)**(n/90)),
+    'F': lambda z, rot, n: (z + rot * n, rot)
 }
 DICT2 = {
-    'N': lambda z, wp, num: (z, wp + num*1j),
-    'S': lambda z, wp, num: (z, wp - num*1j),
-    'E': lambda z, wp, num: (z, wp + num),
-    'W': lambda z, wp, num: (z, wp - num),
-    'L': lambda z, wp, num: (z, wp * 1j**(num/90)),
-    'R': lambda z, wp, num: (z, wp * (-1j)**(num/90)),
-    'F': lambda z, wp, num: (z + wp * num, wp)
+    'N': lambda z, wp, n: (z, wp + n*1j),
+    'S': lambda z, wp, n: (z, wp - n*1j),
+    'E': lambda z, wp, n: (z, wp + n),
+    'W': lambda z, wp, n: (z, wp - n),
+    'L': lambda z, wp, n: (z, wp * 1j**(n/90)),
+    'R': lambda z, wp, n: (z, wp * (-1j)**(n/90)),
+    'F': lambda z, wp, n: (z + wp * n, wp)
 }
 
 
