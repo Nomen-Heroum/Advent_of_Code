@@ -172,13 +172,13 @@ class IntCodeCPU:
             self.memory = defaultdict(int, enumerate(self.code))
             if user_input is not None:
                 self.input = deque(user_input) if isinstance(user_input, Iterable) else deque([user_input])
-            self.output = []
             self.pointer = 0
             self.base = 0
             self.running = True
 
         # Execution loop
         self.waiting = False
+        self.output = []
         while self.running and not self.waiting:
             value = self.memory[self.pointer]
             modes, opcode = divmod(value, 100)  # Separate the opcode from the operation modes

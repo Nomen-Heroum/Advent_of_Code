@@ -12,7 +12,7 @@ def try_phases(intcode, phases):
         amp = 0
         while cpus[amp].running:
             cpus[amp].input.append(signal)
-            signal = cpus[amp].execute()[-1]
+            signal, = cpus[amp].execute()
             amp += 1
             amp %= 5
         max_signal = max(max_signal, signal)
@@ -20,7 +20,6 @@ def try_phases(intcode, phases):
 
 
 def main(intcode=INTCODE):
-    cpu = src.IntCodeCPU()
     print("Part One:")
     ans1 = try_phases(intcode, range(5))
     print(f"The highest possible signal is {ans1}.")  # 75228
