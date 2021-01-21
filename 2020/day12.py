@@ -2,50 +2,50 @@ import src
 import parse
 
 STRINGS = src.read()
-INSTRUCTIONS = list(parse.parse('{}{:d}', s) for s in STRINGS)
-DIR = ['N', 'E', 'S', 'W']
+PATTERN = parse.compile('{}{:d}')
+INSTRUCTIONS = [PATTERN.parse(s).fixed for s in STRINGS]
 DICT = {
-    'N': lambda x, y, rot, num: (x, y + num, rot),
-    'S': lambda x, y, rot, num: (x, y - num, rot),
-    'E': lambda x, y, rot, num: (x + num, y, rot),
-    'W': lambda x, y, rot, num: (x - num, y, rot),
-    'L': lambda x, y, rot, num: (x, y, DIR[(DIR.index(rot) - num//90) % 4]),
-    'R': lambda x, y, rot, num: (x, y, DIR[(DIR.index(rot) + num//90) % 4]),
-    'F': lambda x, y, rot, num: DICT[rot](x, y, rot, num)
+    'N': lambda z, rot, num: (z + num*1j, rot),
+    'S': lambda z, rot, num: (z - num*1j, rot),
+    'E': lambda z, rot, num: (z + num, rot),
+    'W': lambda z, rot, num: (z - num, rot),
+    'L': lambda z, rot, num: (z, rot * 1j**(num/90)),
+    'R': lambda z, rot, num: (z, rot * (-1j)**(num/90)),
+    'F': lambda z, rot, num: (z + rot * num, rot)
 }
 DICT2 = {
-    'N': lambda x, y, a, b, num: (x, y, a, b + num),
-    'S': lambda x, y, a, b, num: (x, y, a, b - num),
-    'E': lambda x, y, a, b, num: (x, y, a + num, b),
-    'W': lambda x, y, a, b, num: (x, y, a - num, b),
-    'L': lambda x, y, a, b, num: (x, y, *src.repeat(lambda a_b: (-a_b[1], a_b[0]), (a, b), num//90)),
-    'R': lambda x, y, a, b, num: (x, y, *src.repeat(lambda a_b: (a_b[1], -a_b[0]), (a, b), num//90)),
-    'F': lambda x, y, a, b, num: (x + num*a, y + num*b, a, b)
+    'N': lambda z, wp, num: (z, wp + num*1j),
+    'S': lambda z, wp, num: (z, wp - num*1j),
+    'E': lambda z, wp, num: (z, wp + num),
+    'W': lambda z, wp, num: (z, wp - num),
+    'L': lambda z, wp, num: (z, wp * 1j**(num/90)),
+    'R': lambda z, wp, num: (z, wp * (-1j)**(num/90)),
+    'F': lambda z, wp, num: (z + wp * num, wp)
 }
 
 
 def follow(instructions: list, dictionary: dict):
     if dictionary == DICT:
-        pos = (0, 0, 'E')
+        pos = (0, 1)  # Position, heading
     elif dictionary == DICT2:
-        pos = (0, 0, 10, 1)
+        pos = (0, 10+1j)  # Position, waypoint
     else:
         raise ValueError("No starting value defined for this instruction dictionary.")
     for inst in instructions:
         key, num = inst
         pos = dictionary[key](*pos, num)
-    return abs(pos[0]) + abs(pos[1])
+    return int(abs(pos[0].real) + abs(pos[0].imag))
 
 
 def main(instructions=None):
     instructions = instructions or INSTRUCTIONS
 
     print("Part One:")
-    endpos = follow(instructions, DICT)
-    print(f"The final Manhattan distance from the star is {endpos}.")
+    endpos = follow(instructions, DICT)  # 445
+    print(f"The final Manhattan distance from the start is {endpos}.")
 
     print("\nPart Two:")
-    endpos2 = follow(instructions, DICT2)
+    endpos2 = follow(instructions, DICT2)  # 42495
     print(f"The final Manhattan distance is now {endpos2}.")
     src.clip(endpos2)
 
