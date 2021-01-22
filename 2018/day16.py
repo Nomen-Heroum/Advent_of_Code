@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 import parse
 
 PARTS = src.read('\n\n\n\n')

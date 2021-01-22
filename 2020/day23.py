@@ -1,5 +1,5 @@
 """Algorithm used courtesy of /u/surplus-of-diggity"""
-import src
+import src  # My utility functions
 
 CUPS = [int(c) for c in '942387615']
 

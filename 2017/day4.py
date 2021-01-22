@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 STRINGS = [s.split() for s in src.read()]
 SORTED = [[tuple(sorted(s)) for s in p] for p in STRINGS]

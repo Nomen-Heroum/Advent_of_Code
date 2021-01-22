@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 from collections import defaultdict
 
 BLUEPRINTS = src.read('\n\n')

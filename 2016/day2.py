@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 STRINGS = src.read()
 INSTRUCTIONS = {'U': 1j, 'D': -1j, 'L': -1, 'R': 1}

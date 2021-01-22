@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 from collections import defaultdict
 
 with open('Input/input13.txt') as file:  # Had to add extra spaces at the end of the input file

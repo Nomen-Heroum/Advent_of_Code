@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 strings = src.read()
 

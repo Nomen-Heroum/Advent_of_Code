@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 import re
 
 FILE = src.read()[0]

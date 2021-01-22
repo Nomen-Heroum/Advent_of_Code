@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 STRING = src.read()[0]
 

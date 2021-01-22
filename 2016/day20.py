@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 BLACKLIST = sorted([tuple(int(n) for n in s.split('-')) for s in src.read()])
 

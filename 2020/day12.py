@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 STRINGS = src.read()
 INSTRUCTIONS = [(s[0], int(s[1:])) for s in STRINGS]

@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 from collections import Counter
 
 STRING = src.read()[0]

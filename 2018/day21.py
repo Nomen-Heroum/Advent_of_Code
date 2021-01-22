@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 STRINGS = src.read()
 SET_VALUE = int(STRINGS[8].split()[1])

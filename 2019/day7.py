@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 from itertools import permutations
 
 INTCODE = src.read(',', ints=True)

@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 from copy import deepcopy
 
 PLAYERS = src.read('\n\n')

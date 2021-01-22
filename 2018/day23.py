@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 import parse
 
 STRING = src.read('\n\n')[0]

@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 PASSWORD_RANGE = range(264793, 803935 + 1)
 

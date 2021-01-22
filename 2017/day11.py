@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 PATH = src.read()[0]
 DIRECTIONS = {'nw': -1, 'n': 1j, 'ne': 1+1j,

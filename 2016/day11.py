@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 
 # Nodes contain all generator floors, then all respective microchip floors, then the current floor.
 # Floors are numbered as their distance from the 4th floor, for nicer heuristic calculation.

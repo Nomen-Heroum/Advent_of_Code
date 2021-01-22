@@ -1,4 +1,4 @@
-import src
+import src  # My utility functions
 from parse import parse
 
 STRINGS = src.read()
