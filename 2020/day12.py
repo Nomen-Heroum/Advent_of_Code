@@ -4,7 +4,8 @@ import parse
 STRINGS = src.read()
 PATTERN = parse.compile('{}{:d}')
 INSTRUCTIONS = [PATTERN.parse(s).fixed for s in STRINGS]
-DICT = {
+
+DICT = {  # Instruction dictionary for Part 1
     'N': lambda z, rot, n: (z + n*1j, rot),
     'S': lambda z, rot, n: (z - n*1j, rot),
     'E': lambda z, rot, n: (z + n, rot),
@@ -13,7 +14,7 @@ DICT = {
     'R': lambda z, rot, n: (z, rot * (-1j)**(n/90)),
     'F': lambda z, rot, n: (z + rot * n, rot)
 }
-DICT2 = {
+DICT2 = {  # Dictionary for Part 2
     'N': lambda z, wp, n: (z, wp + n*1j),
     'S': lambda z, wp, n: (z, wp - n*1j),
     'E': lambda z, wp, n: (z, wp + n),
