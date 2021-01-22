@@ -7,7 +7,7 @@ INTCODE = src.read(',', ints=True)
 def try_phases(intcode, phases):
     max_signal = 0
     for sequence in permutations(phases):
-        cpus = [src.IntCodeCPU(intcode, phase) for phase in sequence]
+        cpus = [src.IntcodeCPU(intcode, phase) for phase in sequence]
         signal = 0
         amp = 0
         while cpus[amp].running:

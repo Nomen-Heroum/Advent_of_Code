@@ -37,7 +37,7 @@ def paint_hull(cpu, version=1):
 
 
 def main(intcode=INTCODE):
-    cpu = src.IntCodeCPU(intcode)
+    cpu = src.IntcodeCPU(intcode)
     print("Part One:")
     ans1 = paint_hull(cpu)  # 1964
     print(f"The robot paints {ans1} panels at least once.")

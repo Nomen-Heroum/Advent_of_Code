@@ -4,7 +4,7 @@ INTCODE = src.read(',', ints=True)
 
 
 def main(intcode=INTCODE):
-    cpu = src.IntCodeCPU()
+    cpu = src.IntcodeCPU()
     print("Part One:")
     output = cpu.execute(intcode, 1)
     assert len(output) == 1, f"Some opcodes have malfunctioned: {output[:-1]}"

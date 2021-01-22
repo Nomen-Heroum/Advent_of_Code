@@ -123,8 +123,8 @@ def orientations(tile: np.ndarray):
             yield np.rot90(tile, k=rotation)[:, ::direction]
 
 
-class IntCodeCPU:
-    """Computer that executes IntCode. References dictionaries for operatons and parameter modes."""
+class IntcodeCPU:
+    """Computer that executes Intcode. References dictionaries for operatons and parameter modes."""
     def __init__(self, intcode=None, user_input=None):
         def val(generator):
             """Get the value from the parameter generator."""
@@ -165,7 +165,7 @@ class IntCodeCPU:
         self.waiting = False  # Waiting for input to come in
 
     def execute(self, intcode=None, user_input=None):
-        """Main wrapper for execution of the IntCode."""
+        """Main wrapper for execution of the Intcode."""
         if not self.running or intcode:  # Reset the program
             if intcode:
                 self.code = [int(n) for n in intcode.split(',')] if isinstance(intcode, str) else list(intcode)

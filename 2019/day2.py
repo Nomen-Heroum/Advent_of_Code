@@ -4,7 +4,7 @@ INTCODE = src.read(',', ints=True)
 
 
 def main(intcode=INTCODE):
-    cpu = src.IntCodeCPU()
+    cpu = src.IntcodeCPU()
     print("Part One:")
     intcode[1] = 12
     intcode[2] = 2

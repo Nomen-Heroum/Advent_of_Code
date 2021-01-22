@@ -12,7 +12,7 @@ def diagnose(cpu, intcode, user_input):
 
 
 def main(intcode=INTCODE):
-    cpu = src.IntCodeCPU()
+    cpu = src.IntcodeCPU()
     print("Part One:")
     ans1 = diagnose(cpu, intcode, 1)  # 14522484
     print(f"The program produces diagnostic code {ans1}.")
