@@ -1,11 +1,9 @@
 import src
-import parse
 
 STRINGS = src.read()
-PATTERN = parse.compile('{}{:d}')
-INSTRUCTIONS = [PATTERN.parse(s).fixed for s in STRINGS]
+INSTRUCTIONS = [(s[0], int(s[1:])) for s in STRINGS]
 
-DICT = {  # Instruction dictionary for Part 1
+DICT = {  # Instructions for Part 1, contains functions (position, heading, number) -> (position, heading)
     'N': lambda z, rot, n: (z + n*1j, rot),
     'S': lambda z, rot, n: (z - n*1j, rot),
     'E': lambda z, rot, n: (z + n, rot),
@@ -14,7 +12,7 @@ DICT = {  # Instruction dictionary for Part 1
     'R': lambda z, rot, n: (z, rot * (-1j)**(n/90)),
     'F': lambda z, rot, n: (z + rot * n, rot)
 }
-DICT2 = {  # Dictionary for Part 2
+DICT2 = {  # Instructions for Part 2, functions (position, waypoint, number) -> (position, waypoint)
     'N': lambda z, wp, n: (z, wp + n*1j),
     'S': lambda z, wp, n: (z, wp - n*1j),
     'E': lambda z, wp, n: (z, wp + n),
@@ -27,15 +25,15 @@ DICT2 = {  # Dictionary for Part 2
 
 def follow(instructions: list, dictionary: dict):
     if dictionary == DICT:
-        pos = (0, 1)  # Position, heading
+        state = (0, 1)  # Position, heading
     elif dictionary == DICT2:
-        pos = (0, 10+1j)  # Position, waypoint
+        state = (0, 10+1j)  # Position, waypoint
     else:
         raise ValueError("No starting value defined for this instruction dictionary.")
-    for inst in instructions:
-        key, num = inst
-        pos = dictionary[key](*pos, num)
-    return int(abs(pos[0].real) + abs(pos[0].imag))
+
+    for key, num in instructions:
+        state = dictionary[key](*state, num)
+    return int(abs(state[0].real) + abs(state[0].imag))
 
 
 def main(instructions=None):
