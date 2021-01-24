@@ -68,9 +68,9 @@ def play_game(cpu, scale=15):
 def main(intcode=INTCODE):
     pygame.init()
     cpu = src.IntcodeCPU(intcode)
-    ans1, ans2 = play_game(cpu)  # 357
+    ans1, ans2 = play_game(cpu)
     print("Part One:")
-    print(f"{ans1} block tiles are on screen when the game starts.")
+    print(f"{ans1} block tiles are on screen when the game starts.")  # 357
 
     print("\nPart Two:")
     print(f"After breaking all blocks, my score is {ans2}.")  # 17468
