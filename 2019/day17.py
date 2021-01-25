@@ -29,7 +29,7 @@ def alignment(cpu):
     return int(total), scaffolding, bot
 
 
-def plan_movement(scaffolding, bot, cpu):
+def plan_movement(scaffolding, bot):
     # First build the most straightforward path
     position, direction = bot
     path = ''
@@ -69,7 +69,7 @@ def main(intcode=INTCODE):
     print(f"The sum of alignment parameters is {ans1}.")
 
     print("\nPart Two:")
-    instructions = plan_movement(scaffolding, bot, cpu)
+    instructions = plan_movement(scaffolding, bot)
     cpu.input += [ord(c) for c in instructions]
     output = cpu.execute()
     ans2 = output[-1]  # 597517
